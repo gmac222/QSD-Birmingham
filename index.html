@@ -1249,20 +1249,22 @@ function submitForm(e) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
-  // NOTE: This is where we post to the HighLevel Webhook URL once provided.
-  // fetch('YOUR_HIGHLEVEL_WEBHOOK_URL', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(data)
-  // }).then(() => { ... })
-
-  // Simulate network request for now
-  setTimeout(() => {
+  fetch('https://services.leadconnectorhq.com/hooks/uDQMr5nOHXbuCi1aGoml/webhook-trigger/0339ffaa-9c9a-44b5-8d1d-583af2aef960', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
     document.querySelectorAll('.ms-step').forEach(el => el.classList.remove('active'));
     const successEl = document.getElementById('stepSuccess');
     successEl.classList.add('active');
     successEl.querySelector('.ms-success').style.display = 'block';
-  }, 1200);
+  })
+  .catch(error => {
+    console.error('Error submitting form:', error);
+    btn.innerHTML = 'Error. Please call us.';
+    btn.disabled = false;
+  });
 }
 </script>
 
