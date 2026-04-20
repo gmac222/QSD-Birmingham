@@ -991,6 +991,38 @@
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-8px);} 60% {transform: translateY(-4px);} }
+
+    @media (max-width: 640px) {
+      .testimonial-stagger-card {
+        padding: 24px 20px;
+        clip-path: polygon(30px 0%, calc(100% - 30px) 0%, 100% 30px, 100% 100%, calc(100% - 30px) 100%, 30px 100%, 0 100%, 0 0);
+      }
+      .testimonial-stagger-card .stagger-corner {
+        top: 29px;
+        width: 42.42px;
+      }
+      .stagger-text {
+        font-size: 0.85rem;
+        line-height: 1.45;
+        margin-bottom: 12px;
+      }
+      .stagger-stars {
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+      .stagger-author {
+        bottom: 16px;
+        left: 20px;
+        right: 20px;
+        font-size: 0.8rem;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 2.5rem) !important;
+      }
+      .testimonials-carousel-wrapper {
+        height: 550px;
+      }
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7H1P4ZEPP"></script>
@@ -1827,7 +1859,7 @@ const testimonialsData = [
 ];
 
 let testimonialsList = [...testimonialsData];
-let cardSize = window.matchMedia("(min-width: 640px)").matches ? 385 : 300;
+let cardSize = window.matchMedia("(min-width: 640px)").matches ? 385 : 330;
 const carouselWrapper = document.getElementById('staggerCarousel');
 
 function renderCarousel() {
@@ -1849,8 +1881,9 @@ function renderCarousel() {
     const translateY = isCenter ? -45 : position % 2 ? 15 : -15;
     const rotate = isCenter ? 0 : position % 2 ? 2.5 : -2.5;
     
+    const isMobile = window.innerWidth < 640;
     card.style.width = cardSize + 'px';
-    card.style.height = (cardSize * 0.85) + 'px';
+    card.style.height = isMobile ? (cardSize * 1.05) + 'px' : (cardSize * 0.85) + 'px';
     card.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`;
     
     card.onclick = () => handleMove(position);
@@ -1893,7 +1926,7 @@ if (btnPrev && btnNext) {
 }
 
 window.addEventListener('resize', () => {
-  const newSize = window.matchMedia("(min-width: 640px)").matches ? 385 : 300;
+  const newSize = window.matchMedia("(min-width: 640px)").matches ? 385 : 330;
   if (newSize !== cardSize) {
     cardSize = newSize;
     renderCarousel();
