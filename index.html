@@ -564,40 +564,223 @@
     .footer-copy a { color: var(--accent); }
 
     /* ─────────── New Sections CSS ─────────── */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-      margin-top: 50px;
-    }
-    .process-step {
+    /* ─────────── Timeline Process CSS ─────────── */
+    .timeline-container {
       position: relative;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 32px;
-      text-align: left;
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 0 20px;
     }
-    .process-step::before {
-      content: attr(data-step);
+    .timeline-center-line {
       position: absolute;
-      top: -16px;
-      left: 32px;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      font-size: 0.9rem;
-      width: 32px;
-      height: 32px;
+      left: 50%;
+      top: 16px;
+      bottom: 16px;
+      width: 2px;
+      border-left: 2px dotted rgba(56, 189, 248, 0.3); /* sky-400 */
+      transform: translateX(-50%);
+      z-index: 1;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .timeline-center-line { display: block; }
+    }
+    .timeline-row {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      margin-bottom: 100px;
+      z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .timeline-row { flex-direction: row; align-items: center; gap: 80px; }
+      .timeline-row.is-odd { flex-direction: row-reverse; }
+    }
+    .timeline-circle-col {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .timeline-row:not(.is-odd) .timeline-circle-col { justify-content: flex-end; }
+      .timeline-row.is-odd .timeline-circle-col { justify-content: flex-start; }
+    }
+    .timeline-circle-wrapper {
+      position: relative;
+      width: 176px; height: 176px;
+    }
+    @media (min-width: 768px) {
+      .timeline-circle-wrapper { width: 256px; height: 256px; }
+    }
+    .timeline-circle-arcs {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 120%; height: 120%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .timeline-arc-outer {
+      position: absolute; inset: 0;
+      border-top: 4px solid rgba(56, 189, 248, 0.2);
+      border-radius: 50%;
+      animation: spin-slow 15s linear infinite;
+    }
+    .timeline-arc-inner {
+      position: absolute; inset: 16px;
+      border-bottom: 2px solid rgba(125, 211, 252, 0.1);
+      border-radius: 50%;
+      animation: spin-slow-reverse 25s linear infinite;
+    }
+    .timeline-circle-main {
+      position: relative;
+      width: 100%; height: 100%;
+      background: rgba(186, 230, 253, 0.95); /* sky-200 */
+      border: 12px solid #08223d;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
+      box-shadow: 0 0 50px rgba(0,0,0,0.3);
+      z-index: 10;
+      transition: transform 0.5s ease;
+      overflow: hidden;
     }
-    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #fff; }
-    .process-step p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+    .timeline-circle-wrapper:hover .timeline-circle-main { transform: scale(1.05); }
+    .timeline-circle-glare {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent);
+      pointer-events: none;
+    }
+    .timeline-circle-text {
+      color: #0a2e54;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      z-index: 20;
+    }
+    @media (min-width: 768px) {
+      .timeline-circle-text { font-size: 1.5rem; }
+    }
+    
+    .timeline-dot {
+      display: none;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+      background: #38bdf8;
+      border: 4px solid #08223d;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(56,189,248,0.5);
+      z-index: 20;
+    }
+    @media (min-width: 768px) {
+      .timeline-dot { display: block; }
+    }
+    
+    .timeline-card-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .timeline-row:not(.is-odd) .timeline-card-col { text-align: left; }
+      .timeline-row.is-odd .timeline-card-col { text-align: right; }
+    }
+    .timeline-card-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .timeline-card-glow {
+      position: absolute;
+      top: -4px; right: -4px; bottom: -4px; left: -4px;
+      background: linear-gradient(to right, rgba(56,189,248,0.2), rgba(59,130,246,0.2));
+      border-radius: 16px;
+      filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .timeline-card-wrapper:hover .timeline-card-glow { opacity: 1; }
+    .timeline-card {
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      transition: border-color 0.5s ease;
+      overflow: hidden;
+      text-align: left;
+    }
+    .timeline-card-wrapper:hover .timeline-card { border-color: rgba(56,189,248,0.3); }
+    .timeline-card-accent {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 4px;
+      background: rgba(56,189,248,0.5);
+    }
+    .timeline-row:not(.is-odd) .timeline-card-accent { left: 0; }
+    .timeline-row.is-odd .timeline-card-accent { right: 0; }
+    
+    .timeline-card p {
+      font-size: 1.125rem;
+      color: rgba(240,249,255,0.8);
+      line-height: 1.6;
+    }
+
+    /* Process Background Ambience */
+    .process-ambience {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    }
+    .process-bg-base { position: absolute; inset: 0; background: #08223d; }
+    .process-grid-overlay {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .process-orb-1 {
+      position: absolute; top: -10%; left: -10%; width: 60%; height: 60%;
+      background: rgba(59,130,246,0.2); border-radius: 50%; filter: blur(100px);
+      animation: pulse-glow 20s ease-in-out infinite;
+    }
+    .process-orb-2 {
+      position: absolute; bottom: -10%; right: -10%; width: 70%; height: 70%;
+      background: rgba(2,132,199,0.2); border-radius: 50%; filter: blur(120px);
+      animation: pulse-glow-reverse 25s ease-in-out infinite;
+    }
+    .process-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(10,46,84,0.8) 100%);
+    }
+
+    @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+    @keyframes spin-slow-reverse { 100% { transform: rotate(-360deg); } }
+    @keyframes pulse-glow {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      50% { transform: translate(50px, -30px) scale(1.2); opacity: 0.5; }
+    }
+    @keyframes pulse-glow-reverse {
+      0%, 100% { transform: translate(0, 0) scale(1.2); opacity: 0.2; }
+      50% { transform: translate(-40px, 50px) scale(1); opacity: 0.4; }
+    }
+
+    /* Scroll Reveal Utilities */
+    .reveal-on-scroll { opacity: 0; transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); }
+    .reveal-fade-up { transform: translateY(40px); }
+    .reveal-slide-left { transform: translateX(80px); }
+    .reveal-slide-right { transform: translateX(-80px); }
+    .reveal-scale-in { transform: scale(0.8); }
+    
+    .reveal-on-scroll.is-visible { opacity: 1; transform: translate(0) scale(1); }
 
     .audience-grid {
       display: grid;
@@ -988,27 +1171,130 @@
 
 
 <!-- ═══════════════ Our Process ═══════════════ -->
-<section id="process" style="padding: 100px 5%; background: #0A1925; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
-  <p class="section-eyebrow">Our Process</p>
-  <h2 class="section-title">End-to-End Compliance Delivery</h2>
-  <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.8;">We handle everything from the initial water pressure test to the final handover certificate, ensuring a seamless experience for your accountable person.</p>
-  
-  <div class="process-grid" style="max-width: 1200px; margin: 50px auto 0;">
-    <div class="process-step" data-step="1">
-      <h3>Survey &amp; Design</h3>
-      <p>We conduct a free site survey, verify mains pressure, and produce fully hydraulically calculated designs to BS 9251:2021 standards.</p>
+<section id="process" style="position: relative; overflow: hidden; padding: 120px 0; background: #08223d; text-align: center; font-family: var(--font-body);">
+  <div class="process-ambience">
+    <div class="process-bg-base"></div>
+    <div class="process-orb-1"></div>
+    <div class="process-orb-2"></div>
+    <div class="process-grid-overlay"></div>
+    <div class="process-vignette"></div>
+  </div>
+
+  <div style="position: relative; z-index: 10;">
+    <div class="reveal-on-scroll reveal-fade-up" style="margin-bottom: 80px; padding: 0 20px;">
+      <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase; letter-spacing: -0.02em;">
+        How QSD Fire <br /> Systems Works
+      </h2>
+      <div style="width: 96px; height: 4px; background: #38bdf8; margin: 0 auto; border-radius: 4px; box-shadow: 0 0 10px rgba(56,189,248,0.5);"></div>
     </div>
-    <div class="process-step" data-step="2">
-      <h3>Installation</h3>
-      <p>Our IFC-certified engineers install your system safely. For retrofits, we employ strict resident-liaison protocols to ensure minimal disruption.</p>
-    </div>
-    <div class="process-step" data-step="3">
-      <h3>Commissioning</h3>
-      <p>Systems are comprehensively pressure-tested and commissioned, providing you with all necessary handover documentation for your Golden Thread.</p>
-    </div>
-    <div class="process-step" data-step="4">
-      <h3>Maintenance</h3>
-      <p>We offer fixed-fee annual inspection and maintenance contracts to ensure ongoing regulatory compliance year after year.</p>
+
+    <div class="timeline-container">
+      <div class="timeline-center-line"></div>
+
+      <!-- Step 1 -->
+      <div class="timeline-row">
+        <div class="timeline-circle-col">
+          <div class="timeline-circle-wrapper reveal-on-scroll reveal-scale-in" style="transition-delay: 0.1s;">
+            <div class="timeline-circle-arcs">
+              <div class="timeline-arc-outer"></div>
+              <div class="timeline-arc-inner"></div>
+            </div>
+            <div class="timeline-circle-main">
+              <div class="timeline-circle-glare"></div>
+              <span class="timeline-circle-text">Design</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-dot reveal-on-scroll reveal-scale-in" style="transition-delay: 0.3s;"></div>
+        <div class="timeline-card-col">
+          <div class="timeline-card-wrapper reveal-on-scroll reveal-slide-left" style="transition-delay: 0.3s;">
+            <div class="timeline-card-glow"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-accent"></div>
+              <p>Once your initial enquiry is received, we will utilise the plans of your property alongside a site survey to discuss your needs in detail, before issuing our detailed quotation. From here, we will work with our experienced design team, who will design your residential sprinkler system, all in line with BS 9251:2021.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="timeline-row is-odd">
+        <div class="timeline-circle-col">
+          <div class="timeline-circle-wrapper reveal-on-scroll reveal-scale-in" style="transition-delay: 0.1s;">
+            <div class="timeline-circle-arcs">
+              <div class="timeline-arc-outer"></div>
+              <div class="timeline-arc-inner"></div>
+            </div>
+            <div class="timeline-circle-main">
+              <div class="timeline-circle-glare"></div>
+              <span class="timeline-circle-text" style="font-size: 1.1rem;">Installation</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-dot reveal-on-scroll reveal-scale-in" style="transition-delay: 0.3s;"></div>
+        <div class="timeline-card-col">
+          <div class="timeline-card-wrapper reveal-on-scroll reveal-slide-right" style="transition-delay: 0.3s;">
+            <div class="timeline-card-glow"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-accent"></div>
+              <p>Once designs are issued and approved, our IFC-certified team works closely alongside your management to install the residential sprinkler system, executing occupied-flat protocols and ensuring as little disruption to your property and residents as possible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="timeline-row">
+        <div class="timeline-circle-col">
+          <div class="timeline-circle-wrapper reveal-on-scroll reveal-scale-in" style="transition-delay: 0.1s;">
+            <div class="timeline-circle-arcs">
+              <div class="timeline-arc-outer"></div>
+              <div class="timeline-arc-inner"></div>
+            </div>
+            <div class="timeline-circle-main">
+              <div class="timeline-circle-glare"></div>
+              <span class="timeline-circle-text" style="font-size: 0.95rem;">Commissioning</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-dot reveal-on-scroll reveal-scale-in" style="transition-delay: 0.3s;"></div>
+        <div class="timeline-card-col">
+          <div class="timeline-card-wrapper reveal-on-scroll reveal-slide-left" style="transition-delay: 0.3s;">
+            <div class="timeline-card-glow"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-accent"></div>
+              <p>Once the installation is complete, our commissioning process begins. A thorough final pressure inspection is carried out to ensure all design criteria have been met. We then supply the complete handover documentation for your Golden Thread compliance file.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="timeline-row is-odd">
+        <div class="timeline-circle-col">
+          <div class="timeline-circle-wrapper reveal-on-scroll reveal-scale-in" style="transition-delay: 0.1s;">
+            <div class="timeline-circle-arcs">
+              <div class="timeline-arc-outer"></div>
+              <div class="timeline-arc-inner"></div>
+            </div>
+            <div class="timeline-circle-main">
+              <div class="timeline-circle-glare"></div>
+              <span class="timeline-circle-text" style="font-size: 1rem;">Maintenance</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-dot reveal-on-scroll reveal-scale-in" style="transition-delay: 0.3s;"></div>
+        <div class="timeline-card-col">
+          <div class="timeline-card-wrapper reveal-on-scroll reveal-slide-right" style="transition-delay: 0.3s;">
+            <div class="timeline-card-glow"></div>
+            <div class="timeline-card">
+              <div class="timeline-card-accent"></div>
+              <p>With your new sprinkler system in place and commissioned, there's very little else that needs to be done! We offer a fixed-fee annual inspection programme, giving you peace of mind that your system is protecting your property and residents.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1167,6 +1453,17 @@
           <div class="ms-title">Your Details</div>
           <div class="ms-progress">Final Step</div>
         </div>
+        
+        <!-- Hidden Context Fields -->
+        <input type="hidden" name="source" value="Website Quote Form">
+        <input type="hidden" name="page_url" value="qsd-fire.co.uk">
+        
+        <!-- Honeypot for Spam Prevention -->
+        <div style="display:none;" aria-hidden="true">
+          <label for="company_website">Company Website (Leave Blank)</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="ms-group">
           <label class="ms-label" for="fullName">Full Name</label>
           <input type="text" class="ms-input" id="fullName" name="fullName" required placeholder="e.g. John Smith">
@@ -1415,6 +1712,13 @@ function submitForm(e) {
   const form = document.getElementById('quoteForm');
   if(!form.reportValidity()) return;
 
+  // Spam Prevention Check (Honeypot)
+  const honeypot = document.getElementById('company_website');
+  if (honeypot && honeypot.value !== '') {
+    console.warn('Bot detected.');
+    return; // Silently fail for bots
+  }
+
   const btn = document.getElementById('submitBtn');
   const originalText = btn.innerHTML;
   btn.innerHTML = 'Submitting...';
@@ -1423,6 +1727,10 @@ function submitForm(e) {
   // Collect data
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
+  
+  // Remove honeypot from payload
+  delete data.company_website;
+  data.page_url = window.location.href;
 
   fetch('https://services.leadconnectorhq.com/hooks/uDQMr5nOHXbuCi1aGoml/webhook-trigger/0339ffaa-9c9a-44b5-8d1d-583af2aef960', {
     method: 'POST',
@@ -1537,6 +1845,25 @@ window.addEventListener('resize', () => {
 
 // Initial render
 renderCarousel();
+
+/* ═══════════════ Scroll Reveal Logic ═══════════════ */
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
+if (revealElements.length > 0) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+}
 
 </script>
 
