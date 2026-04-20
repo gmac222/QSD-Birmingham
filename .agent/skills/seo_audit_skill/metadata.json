@@ -1,0 +1,28 @@
+{
+  "title": "SEO Audit Skill - Phase 2 & 3 Websites",
+  "summary": "Skill for processing Screaming Frog XLSX crawl exports into a full SEO audit suite. Produces three outputs: (1) colour-coded audit XLSX with page type classification, issue tagging, keyword inference, content action recommendations, and backlink planning columns; (2) professional strategy PDF report with executive summary, technical findings, content audit, keyword strategy, backlink strategy, and growth plan; (3) optional page-by-page content review PDF written in plain English for client-facing use. Covers 7 phases: setup/processing, technical audit, content audit with colour coding, optional page-level content review, keyword research via Ahrefs, backlink planning via Ahrefs, and growth planning. Includes strict rules for keyword inference (deepest slug + location modifier), page type classification with colour codes, issue prioritisation, and consistent content action terminology. PDF styling uses the Graham SEO brand system: Dark Blue (#1B2A4A) cover and section headers, Accent Blue (#3B7DD8) left bars, Light Blue (#E8EEF6) sub-headers, colour-coded stat boxes, alternating-row tables, and Helvetica typography throughout. Phase 3b includes automated browser screenshot capture with PIL/Pillow visual annotations (red circles, arrows, callout labels) embedded directly in the page-level review PDF.",
+  "created": "2026-04-13T10:55:00Z",
+  "updated": "2026-04-13T11:08:00Z",
+  "references": [
+    {
+      "type": "file",
+      "path": "C:\\Users\\graha\\Claude Skills\\seo-audit-skill-UPDATED.md",
+      "description": "Original skill source file"
+    },
+    {
+      "type": "file",
+      "path": "C:\\Users\\graha\\Claude Skills\\gen_green_audit_report.pdf",
+      "description": "Reference PDF used to extract the styling specification"
+    }
+  ],
+  "artifacts": [
+    {
+      "filename": "seo_audit_skill.md",
+      "description": "Complete SEO audit skill definition with all phases, output specifications, detailed PDF styling specification (colour palette, typography, component specs), annotated screenshot workflow, and execution checklist"
+    },
+    {
+      "filename": "reference_report.pdf",
+      "description": "Example Gen Green audit report PDF used as the visual styling reference"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Local SEO Page Creator – Countrywide UPVC",
+  "summary": "Skill for generating local SEO landing pages for Countrywide UPVC. Covers the complete body-only HTML template structure designed for embedding in WordPress Breakdance Page Builder, including: structured data (FAQPage, LocalBusiness, Service schemas), CSS design system, hero section, trust bar, intro/SEO content, service cards, security section, internal linking, areas served, gallery, testimonials, FAQ accordion, and CTA placement. Includes rules for image-relevance, location-specific content, and the exact design tokens and class naming convention used across all pages.",
+  "created": "2026-04-11T16:40:00Z",
+  "references": [
+    "file:///C:/Users/graha/Windows%20Liverpool/countrywide_windows_liverpool/windows-liverpool-body.html",
+    "file:///C:/Users/graha/Windows%20Liverpool/countrywide_windows_liverpool/windows-crosby-body.html",
+    "file:///C:/Users/graha/Windows%20Liverpool/countrywide_windows_liverpool/doors-crosby-body.html"
+  ]
+}
