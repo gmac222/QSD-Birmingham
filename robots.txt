@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qsdfiresystems.co.uk/sitemap.xml
+Sitemap: https://firestoppingbirmingham.co.uk/sitemap.xml
