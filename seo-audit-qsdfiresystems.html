@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Audit — qsdfiresystems.co.uk</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #f97316;
+    --accent-glow: rgba(249,115,22,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+  ::selection { background: var(--accent); color: #000; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(249,115,22,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(139,92,246,0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: drift 25s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -1%); }
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .header { padding: 48px 0 8px; text-align: center; }
+  .header-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .header-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 44px; font-weight: 700;
+    line-height: 1.15; margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+  }
+  .header .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+  .header .meta-pill {
+    display: inline-flex; gap: 8px; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--text-muted);
+    padding: 8px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    margin: 0 4px;
+  }
+
+  .tabs {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  .tabs-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-muted);
+    background: none; border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer; white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text-secondary); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab-btn .tab-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px; padding: 0 6px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600;
+    margin-left: 8px; color: var(--text-secondary);
+  }
+  .tab-btn.active .tab-count { background: var(--accent); border-color: var(--accent); color: #000; }
+
+  .tab-content { display: none; padding: 40px 0 80px; }
+  .tab-content.active { display: block; }
+
+  /* Score section */
+  .score-section {
+    display: flex; align-items: center; gap: 48px;
+    margin-bottom: 40px; padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .score-circle-wrap { position: relative; flex-shrink: 0; }
+  .score-circle {
+    width: 180px; height: 180px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; position: relative;
+  }
+  .score-circle svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-circle svg circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+  .score-circle svg .bg-ring { stroke: rgba(255,255,255,0.06); }
+  .score-circle svg .progress-ring {
+    stroke: var(--accent);
+    stroke-dasharray: 502;
+    stroke-dashoffset: 161;
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+  }
+  .score-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px; font-weight: 700; line-height: 1;
+    color: white; position: relative; z-index: 1;
+  }
+  .score-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; position: relative; z-index: 1; margin-top: 4px; }
+  .score-details { flex: 1; }
+  .score-details h2 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .score-details p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+
+  .sub-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .sub-score {
+    padding: 16px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+  .sub-score:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+  .sub-score-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
+  .sub-score-value { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+  .sub-score-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+  .sub-score-fill { height: 100%; border-radius: 2px; transition: width 1.5s ease-out; }
+
+  /* Section headings */
+  .section-heading {
+    display: flex; align-items: baseline; gap: 12px;
+    margin: 40px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-heading h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .section-heading .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  /* Cards / findings */
+  .finding {
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  .finding:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+  .finding.critical { border-left-color: var(--red); background: linear-gradient(90deg, var(--red-bg) 0%, var(--bg-card) 25%); }
+  .finding.warning { border-left-color: var(--yellow); background: linear-gradient(90deg, var(--yellow-bg) 0%, var(--bg-card) 25%); }
+  .finding.good { border-left-color: var(--green); background: linear-gradient(90deg, var(--green-bg) 0%, var(--bg-card) 25%); }
+  .finding.info { border-left-color: var(--blue); background: linear-gradient(90deg, var(--blue-bg) 0%, var(--bg-card) 25%); }
+  .finding-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .finding-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px; font-weight: 600;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 9px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+  }
+  .badge.critical { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+  .badge.warning { background: var(--yellow-bg); color: var(--yellow); border-color: var(--yellow-border); }
+  .badge.good { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+  .badge.info { background: var(--blue-bg); color: var(--blue); border-color: rgba(59,130,246,0.25); }
+  .badge.neutral { background: var(--bg-card); color: var(--text-secondary); border-color: var(--border); }
+  .finding p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+  .finding p + p { margin-top: 8px; }
+  .finding strong { color: var(--text); font-weight: 600; }
+  .finding code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 2px 6px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--accent);
+  }
+  .finding ul, .finding ol { margin: 8px 0 0 20px; color: var(--text-secondary); font-size: 14px; }
+  .finding li { margin-bottom: 4px; }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 20px; background: var(--bg-card); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: rgba(255,255,255,0.03); }
+  th {
+    padding: 12px 16px; text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--text); }
+  td code {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 2px 6px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--accent);
+  }
+
+  /* LSI grid */
+  .lsi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 720px) { .lsi-grid { grid-template-columns: 1fr; } }
+  .lsi-col {
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .lsi-col h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .lsi-col h3 .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .lsi-col.present h3 .dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .lsi-col.missing h3 .dot { background: var(--red); box-shadow: 0 0 8px var(--red); }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: rgba(0,0,0,0.2);
+  }
+  .chip.present { border-color: var(--green-border); color: var(--green); background: var(--green-bg); }
+  .chip.missing { border-color: var(--red-border); color: var(--red); background: var(--red-bg); }
+  .chip.partial { border-color: var(--yellow-border); color: var(--yellow); background: var(--yellow-bg); }
+
+  /* Action plan */
+  .plan-item {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: start;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  .plan-item:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+  .plan-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px; font-weight: 700; line-height: 1;
+    background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .plan-body h3 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .plan-body p { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; }
+  .plan-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Competitors */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .comp-card {
+    padding: 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .comp-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .comp-card .url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 12px; word-break: break-all; }
+  .comp-card .stat { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+  .comp-card .stat strong { color: var(--text); }
+
+  footer.page-foot {
+    padding: 32px 0 48px; border-top: 1px solid var(--border); margin-top: 60px;
+    text-align: center; color: var(--text-muted); font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 720px) {
+    .score-section { flex-direction: column; gap: 24px; padding: 24px; }
+    .header h1 { font-size: 32px; }
+    .plan-item { grid-template-columns: 1fr; }
+    .plan-num { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-badge"><span class="dot"></span> Audit Complete · 2026-04-21</div>
+    <h1>SEO Strategy Audit</h1>
+    <p class="subtitle">Full website review · target keyword: <strong style="color:var(--accent);">fire stopping Birmingham</strong></p>
+    <div>
+      <span class="meta-pill">🌐 qsdfiresystems.co.uk</span>
+      <span class="meta-pill">📄 6 pages crawled</span>
+      <span class="meta-pill">🔍 5 competitors analysed</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="critical">Critical Issues <span class="tab-count">7</span></button>
+    <button class="tab-btn" data-tab="technical">Technical SEO</button>
+    <button class="tab-btn" data-tab="content">Content & Pages <span class="tab-count">6</span></button>
+    <button class="tab-btn" data-tab="competitors">Competitor Gap</button>
+    <button class="tab-btn" data-tab="lsi">Keyword &amp; LSI</button>
+    <button class="tab-btn" data-tab="plan">Action Plan <span class="tab-count">12</span></button>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- ======================= OVERVIEW ======================= -->
+<section class="tab-content active" id="tab-overview">
+  <div class="score-section">
+    <div class="score-circle-wrap">
+      <div class="score-circle">
+        <svg viewBox="0 0 180 180">
+          <circle class="bg-ring" cx="90" cy="90" r="80"></circle>
+          <circle class="progress-ring" cx="90" cy="90" r="80"></circle>
+        </svg>
+        <div class="score-number">68</div>
+        <div class="score-label">Grade · C</div>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Strong foundations, critical accuracy issues holding back rankings.</h2>
+      <p>Your homepage title, H1 structure, and FAQ content are genuinely competitive with the top five ranking sites for <em>fire stopping Birmingham</em>. However, a set of factual, schema, and trust-signal errors — most critically the site-wide reference to the wrong British Standard (BS 9251 is sprinklers, not fire stopping) and a LocalBusiness schema pointing to a different domain with conflicting addresses — are actively undermining both Google's topical-authority assessment and human-buyer trust. Fix the seven critical issues below before further content work; they represent more ranking risk than any other problem on site.</p>
+      <div class="sub-scores">
+        <div class="sub-score"><div class="sub-score-label">Technical SEO</div><div class="sub-score-value" style="color:var(--yellow);">70</div><div class="sub-score-bar"><div class="sub-score-fill" style="width:70%; background:var(--yellow);"></div></div></div>
+        <div class="sub-score"><div class="sub-score-label">Content</div><div class="sub-score-value" style="color:var(--yellow);">65</div><div class="sub-score-bar"><div class="sub-score-fill" style="width:65%; background:var(--yellow);"></div></div></div>
+        <div class="sub-score"><div class="sub-score-label">Architecture</div><div class="sub-score-value" style="color:var(--green);">85</div><div class="sub-score-bar"><div class="sub-score-fill" style="width:85%; background:var(--green);"></div></div></div>
+        <div class="sub-score"><div class="sub-score-label">Cross-Page</div><div class="sub-score-value" style="color:var(--green);">85</div><div class="sub-score-bar"><div class="sub-score-fill" style="width:85%; background:var(--green);"></div></div></div>
+        <div class="sub-score"><div class="sub-score-label">Schema &amp; Social</div><div class="sub-score-value" style="color:var(--red);">45</div><div class="sub-score-bar"><div class="sub-score-fill" style="width:45%; background:var(--red);"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-heading"><h2>What's working</h2><span class="count">5 findings</span></div>
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Strong</span><span class="finding-title">Homepage title tag is well-optimised</span></div>
+    <p><code>Fire Stopping Birmingham | IFC-Certified Passive Fire Protection — West Midlands</code> — 88 chars. Slightly over the 60-char display limit so it will truncate after "Passive Fire Protection", but the primary keyword sits at position 1 and the certification signal is strong. Matches or beats four of the five top-ranking competitors on keyword placement.</p>
+  </div>
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Strong</span><span class="finding-title">Homepage FAQ is genuinely useful and correctly cites regulation</span></div>
+    <p>The 8-question FAQ block correctly references Approved Document B, the Regulatory Reform (Fire Safety) Order 2005, the Building Safety Act 2022, and the Principal Accountable Person duty for 18m+ buildings. Answers are specific and practical — strong E-E-A-T signal and good featured-snippet candidate material. Two of the five top competitors have weaker or no FAQ.</p>
+  </div>
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Strong</span><span class="finding-title">Primary keyword coverage in headings</span></div>
+    <p>"Fire stopping" appears in 7 headings on the homepage, with "Birmingham" or "West Midlands" locally modifying 4 of them. "Fire stopping in Birmingham — your questions answered" (H2) is ideal. H3 sub-headings use the full service lexicon — penetration sealing, cavity barriers, fire doors, intumescent coatings, remedial works.</p>
+  </div>
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Strong</span><span class="finding-title">Local coverage list names specific Birmingham districts</span></div>
+    <p>The FAQ names Edgbaston, Erdington, Harborne, Selly Oak, Perry Barr, Sutton Coldfield, Solihull, Wolverhampton, Walsall, West Bromwich, Coventry. This is a stronger local SEO signal than three of the five top competitors, who refer only to "Birmingham" or "the Midlands" generically.</p>
+  </div>
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Strong</span><span class="finding-title">Valid robots.txt and sitemap.xml in place</span></div>
+    <p><code>robots.txt</code> allows all crawlers and references the sitemap correctly. <code>sitemap.xml</code> is valid with <code>lastmod</code> dates. Font preconnect/preload hints are present. Viewport is set on every page. <code>html lang="en"</code> on every page.</p>
+  </div>
+</section>
+
+<!-- ======================= CRITICAL ISSUES ======================= -->
+<section class="tab-content" id="tab-critical">
+  <div class="section-heading"><h2>Critical issues — fix before publishing</h2><span class="count">7 findings</span></div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · E-E-A-T</span><span class="finding-title">Site-wide reference to the wrong British Standard (BS 9251)</span></div>
+    <p><strong>BS 9251:2021 is the standard for <em>residential fire sprinkler systems</em>, not fire stopping.</strong> The standard appears in 18+ places across every page including the footer copyright line, about page stats grid (<code>BS 9251</code> as a hero stat), multiple meta descriptions, terms of service ("services in compliance with BS 9251"), and the Service schema on every page ("in compliance with BS 9251:2021").</p>
+    <p>For fire stopping, the correct standards to cite are:</p>
+    <ul>
+      <li><code>BS EN 1366-3</code> — fire resistance tests for service installations, penetration seals</li>
+      <li><code>BS EN 1366-4</code> — linear joint seals</li>
+      <li><code>BS 476</code> series — fire tests on building materials and structures</li>
+      <li><code>BS 8214</code> — fire door assemblies</li>
+      <li><code>BS 9991</code> / <code>BS 9999</code> — fire safety in the design of residential / non-domestic buildings</li>
+      <li><code>Approved Document B</code> (which the FAQ already cites correctly)</li>
+    </ul>
+    <p>Impact: any fire-safety professional Googling the site will bounce instantly. Google's helpful-content and E-E-A-T systems evaluate factual correctness for YMYL-adjacent topics; fire safety is squarely in that territory. This single issue is the highest-priority fix on the site.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · Schema</span><span class="finding-title">LocalBusiness schema points to the wrong domain</span></div>
+    <p>Every page's JSON-LD declares the business URL as <code>https://firestoppingbirmingham.co.uk/</code> and sets <code>@id</code> to the same domain, but the canonical site is <code>qsdfiresystems.co.uk</code> (per robots.txt and sitemap.xml). The image URL in schema also points to the non-existent <code>firestoppingbirmingham.co.uk/logo.png</code>.</p>
+    <p>Google will treat the schema as invalid or as describing a different entity — the LocalBusiness rich result won't appear. Replace every occurrence of <code>firestoppingbirmingham.co.uk</code> with the live domain.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · NAP</span><span class="finding-title">Address conflicts across schema, footer, and about page</span></div>
+    <p>Three different business addresses appear across the site — a severe local SEO problem that will prevent Google from associating the site with any single location:</p>
+    <ul>
+      <li><strong>index.html schema:</strong> Birmingham, West Midlands, <code>B1 1AA</code> (B1 1AA is a placeholder Birmingham city-centre postcode; no actual business sits there)</li>
+      <li><strong>about.html schema:</strong> Wrexham, North Wales, <code>LL13 7AA</code></li>
+      <li><strong>Footer (all pages):</strong> Manor Industrial Estate, Flint, Flintshire, <code>CH6 5UY</code></li>
+      <li><strong>about.html body copy:</strong> "Based near Wrexham, North Wales"</li>
+    </ul>
+    <p>If the business is operating from Flintshire and servicing Birmingham, the schema should reflect that with a single authoritative address and an <code>areaServed</code> array including Birmingham and West Midlands towns. Pick one real address and propagate it everywhere.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · Trust</span><span class="finding-title">Placeholder phone number and generic email throughout</span></div>
+    <p>Every page's schema declares <code>telephone: "0800 123 4567"</code> — an obvious placeholder. Emails rotate between <code>info@firestoppingbirmingham.co.uk</code> and <code>compliance@firestoppingbirmingham.co.uk</code>, both on the wrong domain. The body copy does not display a phone number anywhere, which already costs conversions compared to Ark FP (0121 803 9262 displayed in nav) and S.R. Passive Fire (01623 354 415 repeated).</p>
+    <p>Add a real, monitored, geographically-local phone number — ideally a <code>0121</code> Birmingham number — in the nav, footer, schema, and CTA sections. <code>0121</code> is itself a local-SEO signal.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · Brand</span><span class="finding-title">BAFSA accreditation logo displayed — but BAFSA is a sprinkler body</span></div>
+    <p>The accreditations strip on index.html and about.html includes <code>assets/logos/bafsa.png</code>, labelled <code>alt="BAFSA"</code>. BAFSA is the <em>British Automatic Fire Sprinkler Association</em> — membership of which is relevant for sprinkler installers, not passive fire / fire stopping contractors. A specifier evaluating the page will notice the mismatch immediately.</p>
+    <p>Also, the about page lists capability as "fully hydraulically calculated" systems — hydraulic calculation is a sprinkler discipline, not fire stopping. Together with the BS 9251 and BAFSA references, these strongly suggest the site has been adapted from a fire-sprinkler template without swapping in the correct PFP terminology, accreditations, and standards. <strong>Audit every "stat", accreditation logo, and compliance claim against the actual fire-stopping discipline before relaunch.</strong></p>
+    <p>Correct accreditations to target and display (what competitors show): <code>IFC Certification</code>, <code>FIRAS</code>, <code>ASFP</code> membership, <code>ISO 9001:2015</code>, <code>CHAS</code>, <code>Constructionline Gold</code>, <code>Safe Contractor</code>, <code>BM Trada</code> (already shown) and <code>FPA</code>.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · Technical</span><span class="finding-title">Zero canonical, Open Graph, or Twitter Card tags across the site</span></div>
+    <p>None of the 6 pages declares <code>&lt;link rel="canonical"&gt;</code>. For a site where <code>index.html</code> can be reached as <code>/</code>, <code>/index.html</code>, and likely <code>/index</code> (depending on server), and where URL parameters from ads or UTM tracking will be common, missing canonicals is a duplication and consolidation risk.</p>
+    <p>Social sharing on LinkedIn/Facebook/X will show a broken-looking preview — no OG title, description, or image. For B2B fire-stopping sales (housing associations, local authorities) LinkedIn is the primary social channel and an OG-less link is a trust-eroding first impression.</p>
+  </div>
+
+  <div class="finding critical">
+    <div class="finding-head"><span class="badge critical">CRITICAL · Indexation</span><span class="finding-title">BSA 2022 page missing from sitemap.xml</span></div>
+    <p><code>bsa-2022.html</code> (Building Safety Act compliance page — a strong topical-authority asset and a nav-linked page) is not listed in <code>sitemap.xml</code>. Four policy pages are, but the BSA page is not. Add it with a <code>priority</code> of <code>0.8</code> or higher.</p>
+  </div>
+</section>
+
+<!-- ======================= TECHNICAL ======================= -->
+<section class="tab-content" id="tab-technical">
+  <div class="section-heading"><h2>Technical SEO</h2><span class="count">Score 70 / 100</span></div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Warning</span><span class="finding-title">Canonical tags — missing on all 6 pages</span></div>
+    <p>Add <code>&lt;link rel="canonical" href="https://qsdfiresystems.co.uk/{page}"&gt;</code> to every page's <code>&lt;head&gt;</code>.</p>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Warning</span><span class="finding-title">Open Graph &amp; Twitter Card meta — missing on all 6 pages</span></div>
+    <p>Add at minimum: <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:url</code>, <code>og:type=website</code>, <code>twitter:card=summary_large_image</code>, <code>twitter:title</code>, <code>twitter:description</code>, <code>twitter:image</code>. Create one 1200×630 social image showing the brand, primary keyword, and an IFC/FIRAS credibility cue.</p>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Warning</span><span class="finding-title">Image alt text is generic ("Accreditation")</span></div>
+    <p>Four accreditation logos on the homepage and five on the about page all use the alt text <code>alt="Accreditation"</code>. This wastes a keyword opportunity — each logo should carry the specific accreditation name in the alt, e.g. <code>alt="IFC Certification logo"</code>, <code>alt="FIRAS-approved contractor logo"</code>, <code>alt="ISO 9001:2015 certified"</code>, <code>alt="CHAS accredited contractor"</code>. Those are high-value LSI terms.</p>
+    <p>The hero <code>frames/frame_*.jpg</code> sequence is loaded in JS — none has alt text. The main <code>uk_coverage_map.png</code> does have descriptive alt (✓).</p>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Warning</span><span class="finding-title">No modern image formats, no lazy loading</span></div>
+    <p>All images are <code>.png</code>. <code>favicon.png</code> and <code>logo.png</code> are both 521 KB — same file referenced in two places. Convert to <code>.webp</code> (expect ~80% size reduction), add <code>loading="lazy"</code> to everything below the fold, and use <code>decoding="async"</code>. The hero frame sequence (<code>frames/frame_0001.jpg</code>…<code>frame_0192.jpg</code>) is the single biggest performance cost on the site — consider serving a shorter sequence to mobile and/or preloading only the first 5 frames.</p>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Warning</span><span class="finding-title">Homepage title exceeds display limit</span></div>
+    <p><code>Fire Stopping Birmingham | IFC-Certified Passive Fire Protection — West Midlands</code> is 88 characters. Google typically truncates around 55–60. Consider: <code>Fire Stopping Birmingham · IFC-Certified PFP Specialists | QSD</code> (61 chars) — leads with keyword + city, signals certification, room for brand.</p>
+  </div>
+
+  <div class="finding info">
+    <div class="finding-head"><span class="badge info">Info</span><span class="finding-title">Security headers not verifiable from local files</span></div>
+    <p>When deployed, verify <code>Strict-Transport-Security</code>, <code>Content-Security-Policy</code>, <code>X-Content-Type-Options: nosniff</code>, <code>X-Frame-Options</code>, and <code>Referrer-Policy</code> are set. Also enable Brotli/gzip and <code>Cache-Control</code> for static assets. Google Search Console's Page Experience signals will reflect these.</p>
+  </div>
+
+  <div class="finding good">
+    <div class="finding-head"><span class="badge good">Good</span><span class="finding-title">Baseline technical hygiene is present</span></div>
+    <ul>
+      <li>Viewport meta on every page</li>
+      <li><code>html lang="en"</code> on every page</li>
+      <li>Favicon referenced</li>
+      <li>Preconnect/preload hints for Google Fonts</li>
+      <li>robots.txt valid and references sitemap</li>
+      <li>sitemap.xml valid XML with <code>lastmod</code> dates</li>
+      <li>No blocked resources in robots.txt</li>
+      <li>JSON-LD schema block on every page (though content-incorrect)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= CONTENT ======================= -->
+<section class="tab-content" id="tab-content">
+  <div class="section-heading"><h2>Per-page analysis</h2><span class="count">6 pages</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Title (chars)</th><th>Meta (chars)</th><th>H1</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>index.html</strong><br><span style="color:var(--text-muted);font-size:11px;">/ (home)</span></td>
+          <td><span class="badge warning">88</span></td>
+          <td><span class="badge good">296</span><br><span style="color:var(--text-muted);font-size:11px;">note: longer than 160</span></td>
+          <td>✓ 1 H1</td>
+          <td>Strong topical page. Keyword placement is good. Cuts off in SERP display (88 chars). Meta description is 296 chars — Google will truncate after ~160. Rewrite to 150–160 chars with CTA.</td>
+        </tr>
+        <tr>
+          <td><strong>about.html</strong></td>
+          <td><span class="badge good">46</span></td>
+          <td><span class="badge good">144</span></td>
+          <td>✓ 1 H1 — <em>but lacks primary keyword</em></td>
+          <td>H1 "Protecting lives and securing compliance across the UK" doesn't contain fire stopping or Birmingham. Rewrite to: <code>About QSD Fire Systems — Birmingham's IFC-certified fire stopping specialists</code>. Remove the "BS 9251" stat card (see Critical). Short page (~450 words) — competitors' about pages average 900–1,200 words with case studies and team credentials.</td>
+        </tr>
+        <tr>
+          <td><strong>bsa-2022.html</strong></td>
+          <td><span class="badge good">59</span></td>
+          <td><span class="badge good">156</span></td>
+          <td>✓ 1 H1</td>
+          <td>Excellent topical page concept. H1 "The Golden Thread of fire safety compliance" is brand-y; add primary keyword variant: <code>Building Safety Act 2022 Compliance for Fire Stopping — Birmingham</code>. <strong>Not in sitemap — add it.</strong> Good opportunity to rank for "Building Safety Act fire stopping Birmingham" long-tail.</td>
+        </tr>
+        <tr>
+          <td><strong>privacy.html</strong></td>
+          <td><span class="badge good">43</span></td>
+          <td><span class="badge good">147</span></td>
+          <td>✓ 1 H1</td>
+          <td>Policy page — fine. Add <code>&lt;meta name="robots" content="noindex,follow"&gt;</code> to avoid policy pages competing for keyword relevance.</td>
+        </tr>
+        <tr>
+          <td><strong>terms.html</strong></td>
+          <td><span class="badge good">43</span></td>
+          <td><span class="badge good">121</span></td>
+          <td>✓ 1 H1</td>
+          <td>Body text references "BS 9251 standards" — <strong>remove</strong> (see Critical #1). Policy page — fine. Consider <code>noindex</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>cookie-policy.html</strong></td>
+          <td><span class="badge good">44</span></td>
+          <td><span class="badge good">107</span></td>
+          <td>✓ 1 H1</td>
+          <td>Policy page — fine. Consider <code>noindex</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Gap</span><span class="finding-title">Service pages don't exist as standalone URLs</span></div>
+    <p>Competitors rank on service-specific URLs — e.g. Ark FP has separate pages for fire stopping, fire doors, intumescent coatings, partitions, external fire barriers, remedial works. Your services are H3 sections inside the homepage, which means they can't rank independently for long-tail queries like "intumescent coatings Birmingham" or "cavity barrier installation West Midlands".</p>
+    <p>Recommended: spin off 4–6 service pages with genuinely unique ~800-word content each. Service + service-area pages are the standard local-SEO template and the #1 way ranked sites above yours are accumulating their organic footprint.</p>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Gap</span><span class="finding-title">No case studies, project examples, or named clients</span></div>
+    <p>Five of the six competitors show named housing association / local authority clients or anonymised case studies with square-meterage, programme duration, and number of penetration seals installed. Your trust block shows logos without names. A single "Recent work" page with 3–4 anonymised case studies would materially strengthen E-E-A-T and conversion rate.</p>
+  </div>
+</section>
+
+<!-- ======================= COMPETITORS ======================= -->
+<section class="tab-content" id="tab-competitors">
+  <div class="section-heading"><h2>Top 5 ranking competitors — <em>"fire stopping Birmingham"</em></h2><span class="count">SERP position 1–10</span></div>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <h4>Ark Fire Protection</h4>
+      <div class="url">ark-fp.co.uk/locations/passive-fire-protection-birmingham/</div>
+      <div class="stat"><strong>Word count:</strong> ~2,500</div>
+      <div class="stat"><strong>H1:</strong> Fire Stopping &amp; Passive Fire Protection in Birmingham</div>
+      <div class="stat"><strong>H2s:</strong> 11 (services, accreditations, regulations, FAQ)</div>
+      <div class="stat"><strong>Accreditations:</strong> ISO 9001, FIRAS, Constructionline Gold, CHAS, SSIP, SafeContractor, ASFP</div>
+      <div class="stat"><strong>Phone:</strong> 0121 803 9262 (local)</div>
+    </div>
+    <div class="comp-card">
+      <h4>Element Passive Fire Protection</h4>
+      <div class="url">element-pfp.co.uk/fire-stopping-birmingham/</div>
+      <div class="stat"><strong>Word count:</strong> ~600</div>
+      <div class="stat"><strong>H1:</strong> Fire Stopping Birmingham</div>
+      <div class="stat"><strong>Accreditations:</strong> CHAS, BuildUK, ASFP, FPA, IFSM, IFC, SafeContractor, Constructionline Gold, ISO 9001</div>
+      <div class="stat"><strong>Sectors:</strong> residential, healthcare, hotels, student accommodation, social housing, FM</div>
+    </div>
+    <div class="comp-card">
+      <h4>S.R Passive Fire Ltd</h4>
+      <div class="url">srpassivefire.com/fire-stopping-birmingham/</div>
+      <div class="stat"><strong>Word count:</strong> ~1,500</div>
+      <div class="stat"><strong>H1:</strong> FIRE STOPPING BIRMINGHAM</div>
+      <div class="stat"><strong>USP:</strong> "Four decades" + FIRAS-certified, prominent FAQ</div>
+      <div class="stat"><strong>Phone:</strong> 01623 354 415 (displayed 8× on page)</div>
+    </div>
+    <div class="comp-card">
+      <h4>Adaston</h4>
+      <div class="url">adaston.com/passive-fire-protection-birmingham/</div>
+      <div class="stat"><strong>Word count:</strong> ~2,200</div>
+      <div class="stat"><strong>H1:</strong> Passive Fire Protection Birmingham</div>
+      <div class="stat"><strong>Accreditations:</strong> ISO 9001:2015, ASFP, FPA, Constructionline Gold, IFCC, CHAS, Armed Forces Covenant, SafeContractor</div>
+      <div class="stat"><strong>Content depth:</strong> resources hub with Golden Thread + fire door guides</div>
+    </div>
+    <div class="comp-card">
+      <h4>QSD Fire (sister site?)</h4>
+      <div class="url">qsdfire.com/fire-stopping/birmingham/</div>
+      <div class="stat"><strong>Note:</strong> Ranks position 9. Share brand name &amp; likely same company as qsdfiresystems.co.uk — <strong>potential domain cannibalisation risk</strong>. Two QSD-branded domains competing for the same keyword will split link equity and confuse Google's entity resolution.</div>
+      <div class="stat"><strong>Action:</strong> Pick one domain. 301-redirect the other. Consolidate backlinks.</div>
+    </div>
+  </div>
+
+  <div class="section-heading" style="margin-top:32px;"><h2>Where competitors beat you</h2></div>
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Gap</span><span class="finding-title">Word count + service page density</span></div>
+    <p>Competitor city landing pages run 1,500–2,500 words. Your homepage is content-rich but tries to serve as home + service index + city page. Competitors then have <strong>dedicated service sub-pages</strong> (e.g. <code>/fire-stopping</code>, <code>/intumescent-coatings</code>, <code>/fire-doors</code>), each 700–1,500 words. That's 8–15 extra ranking URLs targeting long-tail variants.</p>
+  </div>
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Gap</span><span class="finding-title">Displayed phone number</span></div>
+    <p>Ark shows <code>0121 803 9262</code> (Birmingham local) in nav + footer. S.R. Passive repeats <code>01623 354 415</code> eight times. You display no phone — only a form. Adding a <code>0121</code> number materially lifts both conversions and Google Business Profile matching.</p>
+  </div>
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Gap</span><span class="finding-title">Accreditation breadth &amp; specificity</span></div>
+    <p>Competitors display 6–9 accreditations with named alt text. You display 6 logos with <code>alt="Accreditation"</code>. Target set to show: <code>IFC</code>, <code>FIRAS</code>, <code>ASFP</code>, <code>ISO 9001:2015</code>, <code>CHAS</code>, <code>Constructionline Gold</code>, <code>SafeContractor</code>, <code>BM Trada</code>, <code>FPA</code>. Drop <code>BAFSA</code> unless you also install sprinklers.</p>
+  </div>
+</section>
+
+<!-- ======================= LSI ======================= -->
+<section class="tab-content" id="tab-lsi">
+  <div class="section-heading"><h2>Keyword &amp; semantic coverage</h2><span class="count">vs top-5 SERP</span></div>
+
+  <div class="lsi-grid">
+    <div class="lsi-col present">
+      <h3><span class="dot"></span> Present on your site</h3>
+      <div class="chip-list">
+        <span class="chip present">fire stopping</span>
+        <span class="chip present">passive fire protection</span>
+        <span class="chip present">penetration sealing</span>
+        <span class="chip present">cavity barriers</span>
+        <span class="chip present">fire doors</span>
+        <span class="chip present">intumescent coatings</span>
+        <span class="chip present">compartmentation</span>
+        <span class="chip present">remedial works</span>
+        <span class="chip present">fire compartmentation survey</span>
+        <span class="chip present">Building Safety Act 2022</span>
+        <span class="chip present">Golden Thread</span>
+        <span class="chip present">Accountable Person</span>
+        <span class="chip present">Approved Document B</span>
+        <span class="chip present">Regulatory Reform (Fire Safety) Order 2005</span>
+        <span class="chip present">IFC-certified</span>
+        <span class="chip present">FIRAS</span>
+        <span class="chip present">CHAS</span>
+        <span class="chip present">ISO 9001</span>
+        <span class="chip present">BM Trada</span>
+        <span class="chip present">Onetrace</span>
+        <span class="chip present">housing associations</span>
+        <span class="chip present">care homes</span>
+        <span class="chip present">block managers</span>
+        <span class="chip present">West Midlands</span>
+      </div>
+    </div>
+    <div class="lsi-col missing">
+      <h3><span class="dot"></span> Missing — present on 2+ top-ranking competitor pages</h3>
+      <div class="chip-list">
+        <span class="chip missing">BS EN 1366-3</span>
+        <span class="chip missing">BS 476</span>
+        <span class="chip missing">BS 8214</span>
+        <span class="chip missing">BS 9991 / BS 9999</span>
+        <span class="chip missing">linear joint seals</span>
+        <span class="chip missing">batt &amp; mastic seals</span>
+        <span class="chip missing">graphite wraps</span>
+        <span class="chip missing">fire pillows</span>
+        <span class="chip missing">structural steel fire protection</span>
+        <span class="chip missing">external fire barriers</span>
+        <span class="chip missing">fire curtains</span>
+        <span class="chip missing">fire-rated partitions</span>
+        <span class="chip missing">collar devices</span>
+        <span class="chip missing">fire-rated boarding</span>
+        <span class="chip missing">service penetrations</span>
+        <span class="chip missing">ASFP</span>
+        <span class="chip missing">Constructionline Gold</span>
+        <span class="chip missing">SafeContractor</span>
+        <span class="chip missing">FPA</span>
+        <span class="chip missing">hotels</span>
+        <span class="chip missing">schools &amp; education</span>
+        <span class="chip missing">NHS estate</span>
+        <span class="chip missing">HMO compliance</span>
+        <span class="chip missing">fire risk assessment</span>
+        <span class="chip missing">post-installation inspection</span>
+        <span class="chip missing">fire door inspection</span>
+        <span class="chip missing">0121 (Birmingham dialling code)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding warning">
+    <div class="finding-head"><span class="badge warning">Partial</span><span class="finding-title">"IFC certified" vs "IFC Certification"</span></div>
+    <p>Your site uses "IFC-certified" consistently. Google understands these as the same entity, but pairing with the full phrase "IFC Certification" at least once (in accreditations alt text) reinforces the signal for queries that use the proper noun.</p>
+  </div>
+  <div class="finding info">
+    <div class="finding-head"><span class="badge info">Opportunity</span><span class="finding-title">Sector expansion — low competition, easy content wins</span></div>
+    <p>Competitors target hotels, schools, NHS estate, HMOs, and student accommodation. You target four sectors (HAs, care homes, developers, block managers). Adding one paragraph each about schools, NHS sites, and HMOs on the relevant service page or a dedicated "Sectors we serve" page adds ~6–8 long-tail ranking targets at almost no content cost.</p>
+  </div>
+</section>
+
+<!-- ======================= ACTION PLAN ======================= -->
+<section class="tab-content" id="tab-plan">
+  <div class="section-heading"><h2>Prioritised action plan</h2><span class="count">12 items · do in order</span></div>
+
+  <div class="plan-item">
+    <div class="plan-num">01</div>
+    <div class="plan-body">
+      <h3>Remove every reference to BS 9251 across the site</h3>
+      <p>Find-and-replace across all 6 HTML files. Replace with a factually correct standard set appropriate to the specific claim being made (BS EN 1366-3 for penetration seals, BS 8214 for fire doors, Approved Document B for the regulatory hook). Re-word the about-page stats grid and footer copyright line. Remove "hydraulically calculated" language. This is an E-E-A-T / trust fix as much as it is SEO.</p>
+      <div class="plan-meta"><span class="badge critical">Critical</span><span class="badge neutral">~2h</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">02</div>
+    <div class="plan-body">
+      <h3>Fix every page's LocalBusiness schema</h3>
+      <p>Replace <code>firestoppingbirmingham.co.uk</code> with <code>qsdfiresystems.co.uk</code> in all <code>@id</code>, <code>url</code>, and <code>image</code> fields. Replace placeholder phone <code>0800 123 4567</code> with real Birmingham <code>0121</code> number. Replace placeholder email. Pick ONE address and use it on every page — if operating from Flintshire, keep that as the <code>address</code> and add <code>areaServed: [{"@type":"City","name":"Birmingham"},...]</code> array. Add <code>sameAs</code> with real LinkedIn / company-house / GBP URLs. Validate via <code>search.google.com/test/rich-results</code>.</p>
+      <div class="plan-meta"><span class="badge critical">Critical</span><span class="badge neutral">~2h</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">03</div>
+    <div class="plan-body">
+      <h3>Add a real, displayed, local phone number</h3>
+      <p>Publish a monitored <code>0121</code> number in the nav, footer, CTA sections, and schema. Displayed phone materially lifts conversion and is one of the strongest local-SEO ranking signals. Mirror across the Google Business Profile.</p>
+      <div class="plan-meta"><span class="badge critical">Critical</span><span class="badge neutral">1d</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">04</div>
+    <div class="plan-body">
+      <h3>Resolve QSD domain cannibalisation</h3>
+      <p>Both <code>qsdfiresystems.co.uk</code> and <code>qsdfire.com/fire-stopping/birmingham/</code> appear in the SERP for the target keyword. Decide which is primary, 301-redirect the other, and consolidate all backlink / brand equity onto the winner. Do this before further content investment.</p>
+      <div class="plan-meta"><span class="badge critical">Critical</span><span class="badge neutral">0.5d</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">05</div>
+    <div class="plan-body">
+      <h3>Remove BAFSA logo, add the right accreditations</h3>
+      <p>Drop <code>bafsa.png</code> unless sprinklers are in scope. Add/verify logos for IFC, FIRAS, ASFP, ISO 9001:2015, CHAS, Constructionline Gold, SafeContractor, FPA. Update every image alt to the accreditation's full name (e.g. <code>alt="FIRAS-approved fire stopping contractor"</code>). Re-upload assets as optimised WebP.</p>
+      <div class="plan-meta"><span class="badge critical">Critical</span><span class="badge neutral">1d</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">06</div>
+    <div class="plan-body">
+      <h3>Add canonical, Open Graph, and Twitter Card tags site-wide</h3>
+      <p>Canonicals on every page. OG set: title, description, image (1200×630), url, type. Twitter: <code>summary_large_image</code>. Use the same image asset across both. Verify with the LinkedIn Post Inspector and X Card Validator.</p>
+      <div class="plan-meta"><span class="badge warning">High</span><span class="badge neutral">~3h</span><span class="badge neutral">Impact: Medium</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">07</div>
+    <div class="plan-body">
+      <h3>Ship 4 service landing pages</h3>
+      <p>Create dedicated URLs — each 700–1,200 words, unique meta, unique H1, internal links from the homepage service cards:</p>
+      <ul>
+        <li><code>/penetration-sealing-birmingham</code></li>
+        <li><code>/cavity-barriers-birmingham</code></li>
+        <li><code>/fire-doors-birmingham</code></li>
+        <li><code>/intumescent-coatings-birmingham</code> (or <code>/remedial-fire-stopping-birmingham</code>)</li>
+      </ul>
+      <p>Each page covers: what it is, when it's required (with correct BS reference), process, products used, relevant sector examples, FAQ, CTA. Add all four to <code>sitemap.xml</code>. These will be the primary ranking URLs for long-tail variants.</p>
+      <div class="plan-meta"><span class="badge warning">High</span><span class="badge neutral">2w</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">08</div>
+    <div class="plan-body">
+      <h3>Add bsa-2022.html to sitemap.xml + strengthen its title &amp; H1</h3>
+      <p>Add the <code>&lt;url&gt;</code> entry (<code>priority 0.8</code>). Rewrite H1 to: <code>Building Safety Act 2022 Fire Stopping Compliance — Birmingham</code>. Link to it contextually from the homepage Building Safety Act 2022 service card (already exists) and from each new service page.</p>
+      <div class="plan-meta"><span class="badge warning">High</span><span class="badge neutral">1h</span><span class="badge neutral">Impact: Medium</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">09</div>
+    <div class="plan-body">
+      <h3>Rewrite homepage title + meta description to SERP-safe length</h3>
+      <p>Title → <code>Fire Stopping Birmingham · IFC-Certified PFP Specialists | QSD</code> (61 chars). Meta description → 150–160 chars with a CTA, e.g. <em>"IFC &amp; FIRAS-certified fire stopping specialists in Birmingham. Penetration sealing, cavity barriers &amp; fire doors for HAs, care homes &amp; developers. Call 0121…"</em></p>
+      <div class="plan-meta"><span class="badge warning">High</span><span class="badge neutral">30m</span><span class="badge neutral">Impact: Medium</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">10</div>
+    <div class="plan-body">
+      <h3>Add FAQPage schema to the homepage FAQ</h3>
+      <p>The 8 FAQ items already written are ideal for rich-result FAQ snippets. Wrap them in <code>@type: FAQPage</code> with <code>Question</code> / <code>acceptedAnswer</code> structure. This is one of the fastest SERP feature wins available.</p>
+      <div class="plan-meta"><span class="badge warning">High</span><span class="badge neutral">1h</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">11</div>
+    <div class="plan-body">
+      <h3>Set up a Google Business Profile — Birmingham</h3>
+      <p>Critical for "fire stopping near me" and map-pack visibility. Categories: <em>Fire Protection Service, Fire Protection Equipment Supplier</em>. Match NAP exactly with the site's canonical address. Upload IFC/FIRAS cert photos, service photos, logo. Start collecting reviews from completed jobs — each review targeting "fire stopping Birmingham" language strengthens local relevance.</p>
+      <div class="plan-meta"><span class="badge info">Medium</span><span class="badge neutral">1w</span><span class="badge neutral">Impact: High</span></div>
+    </div>
+  </div>
+
+  <div class="plan-item">
+    <div class="plan-num">12</div>
+    <div class="plan-body">
+      <h3>Add 2–3 anonymised case studies with measurable outcomes</h3>
+      <p>Format: sector + block type + number of flats + remedial scope + square meters surveyed + duration + Onetrace handover. These carry strong E-E-A-T weight and give prospects something to share internally. Link each from the homepage proof section and from the relevant service page.</p>
+      <div class="plan-meta"><span class="badge info">Medium</span><span class="badge neutral">2w</span><span class="badge neutral">Impact: Medium</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-foot">
+  <div class="container">
+    Generated 2026-04-21 · SEO Strategy Skill · claude-opus-4-7<br>
+    6 pages audited · 5 SERP competitors analysed · primary keyword: fire stopping Birmingham
+  </div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-content');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabs.forEach(t => t.classList.toggle('active', t === btn));
+      panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + target));
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  });
+</script>
+</body>
+</html>
