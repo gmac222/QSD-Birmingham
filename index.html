@@ -26,8 +26,8 @@
       --font-body: 'Roboto', sans-serif;
       --font-display: 'Roboto', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --accent: #D4000C;
-      --accent-rgb: 212, 0, 12;
+      --accent: #ec8b0e;
+      --accent-rgb: 236, 139, 14;
       --bg: #0A1925;
       --surface-1: rgba(255, 255, 255, 0.02);
       --surface-2: rgba(255, 255, 255, 0.05);
@@ -569,7 +569,7 @@
       top: 16px;
       bottom: 16px;
       width: 2px;
-      border-left: 2px dotted rgba(212, 0, 12, 0.3); /* accent */
+      border-left: 2px dotted rgba(236, 139, 14, 0.3); /* accent */
       transform: translateX(-50%);
       z-index: 1;
       display: none;
@@ -615,13 +615,13 @@
     }
     .timeline-arc-outer {
       position: absolute; inset: 0;
-      border-top: 3px solid rgba(212, 0, 12, 0.4);
+      border-top: 3px solid rgba(236, 139, 14, 0.4);
       border-radius: 50%;
       animation: spin-slow 15s linear infinite;
     }
     .timeline-arc-inner {
       position: absolute; inset: 16px;
-      border-bottom: 2px solid rgba(212, 0, 12, 0.15);
+      border-bottom: 2px solid rgba(236, 139, 14, 0.15);
       border-radius: 50%;
       animation: spin-slow-reverse 25s linear infinite;
     }
@@ -629,20 +629,20 @@
       position: relative;
       width: 100%; height: 100%;
       background: rgba(10, 25, 37, 0.95);
-      border: 3px solid rgba(212, 0, 12, 0.8);
+      border: 3px solid rgba(236, 139, 14, 0.8);
       border-radius: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 40px rgba(212, 0, 12, 0.2), inset 0 0 20px rgba(212, 0, 12, 0.1);
+      box-shadow: 0 0 40px rgba(236, 139, 14, 0.2), inset 0 0 20px rgba(236, 139, 14, 0.1);
       z-index: 10;
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
       overflow: hidden;
     }
     .timeline-circle-wrapper:hover .timeline-circle-main { 
       transform: scale(1.05); 
-      box-shadow: 0 0 60px rgba(212, 0, 12, 0.4), inset 0 0 30px rgba(212, 0, 12, 0.2);
+      box-shadow: 0 0 60px rgba(236, 139, 14, 0.4), inset 0 0 30px rgba(236, 139, 14, 0.2);
     }
     .timeline-circle-glare {
       position: absolute; inset: 0;
@@ -680,7 +680,7 @@
       background: var(--accent);
       border: 6px solid #0A1925;
       border-radius: 50%;
-      box-shadow: 0 0 20px rgba(212, 0, 12, 0.6);
+      box-shadow: 0 0 20px rgba(236, 139, 14, 0.6);
       z-index: 20;
     }
     @media (min-width: 768px) {
@@ -705,14 +705,14 @@
     .timeline-card-glow {
       position: absolute;
       top: -2px; right: -2px; bottom: -2px; left: -2px;
-      background: linear-gradient(135deg, rgba(212, 0, 12, 0.4), transparent 60%);
+      background: linear-gradient(135deg, rgba(236, 139, 14, 0.4), transparent 60%);
       border-radius: 16px;
       filter: blur(8px);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
     .timeline-row.is-odd .timeline-card-glow {
-      background: linear-gradient(-135deg, rgba(212, 0, 12, 0.4), transparent 60%);
+      background: linear-gradient(-135deg, rgba(236, 139, 14, 0.4), transparent 60%);
     }
     .timeline-card-wrapper:hover .timeline-card-glow { opacity: 1; }
     .timeline-card {
@@ -728,7 +728,7 @@
       overflow: hidden;
       text-align: left;
     }
-    .timeline-card-wrapper:hover .timeline-card { border-color: rgba(212, 0, 12, 0.3); }
+    .timeline-card-wrapper:hover .timeline-card { border-color: rgba(236, 139, 14, 0.3); }
     .timeline-card-accent {
       position: absolute;
       top: 0; bottom: 0;
@@ -762,12 +762,12 @@
     }
     .process-orb-1 {
       position: absolute; top: -10%; left: -10%; width: 60%; height: 60%;
-      background: rgba(212, 0, 12, 0.08); border-radius: 50%; filter: blur(140px);
+      background: rgba(236, 139, 14, 0.08); border-radius: 50%; filter: blur(140px);
       animation: pulse-glow 20s ease-in-out infinite;
     }
     .process-orb-2 {
       position: absolute; bottom: -10%; right: -10%; width: 70%; height: 70%;
-      background: rgba(212, 0, 12, 0.05); border-radius: 50%; filter: blur(160px);
+      background: rgba(236, 139, 14, 0.05); border-radius: 50%; filter: blur(160px);
       animation: pulse-glow-reverse 25s ease-in-out infinite;
     }
     .process-vignette {
@@ -812,7 +812,7 @@
     .audience-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border-color: rgba(212, 0, 12, 0.3);
+      border-color: rgba(236, 139, 14, 0.3);
     }
     .audience-card svg { width: 40px; height: 40px; color: var(--accent); margin-bottom: 20px; }
     .audience-card h3 { font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
@@ -851,7 +851,7 @@
       box-shadow: 0px 8px 0px 4px var(--card-border);
     }
     .testimonial-stagger-card:not(.is-center):hover {
-      border-color: rgba(212, 0, 12,0.5);
+      border-color: rgba(236, 139, 14,0.5);
     }
     .testimonial-stagger-card .stagger-corner {
       position: absolute;
@@ -975,7 +975,7 @@
     .ms-radio-lbl:hover { border-color: rgba(255,255,255,0.3); }
     .ms-radio-lbl input { display: none; }
     .ms-radio-lbl input:checked + span { color: var(--accent); }
-    .ms-radio-lbl:has(input:checked) { border-color: var(--accent); background: rgba(212, 0, 12,0.05); }
+    .ms-radio-lbl:has(input:checked) { border-color: var(--accent); background: rgba(236, 139, 14,0.05); }
 
     .ms-success { text-align: center; display: none; padding: 40px 0; }
     .ms-success svg { width: 64px; height: 64px; color: #10B981; margin-bottom: 20px; }
@@ -1183,7 +1183,7 @@
     <div class="hero-content-wrapper" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding: 0 5vw; z-index: 10; pointer-events: none;">
       <div class="hero-content" style="text-align: left; max-width: 800px; margin: 0; position: static; pointer-events: auto;">
         <div class="hero-eyebrow"><span class="dot"></span> IFC &amp; FIRAS Certified · Building Safety Act 2022 · Onetrace Reporting</div>
-        <div style="color: #D4000C; font-family: var(--font-mono); font-weight: 500; font-size: 0.95rem; letter-spacing: 0; margin-bottom: 8px;">Expert Fire Suppression & Sprinklers</div>
+        <div style="color: #ec8b0e; font-family: var(--font-mono); font-weight: 500; font-size: 0.95rem; letter-spacing: 0; margin-bottom: 8px;">Expert Fire Suppression & Sprinklers</div>
         <h1 class="hero-title" style="letter-spacing: -0.04em; color: #fff;">Fire Stopping Birmingham by QSD Fire<span style="color: var(--accent);">.</span></h1>
         <p class="hero-subtitle" style="margin-left: 0; margin-right: 0; color: #cbd5e1; font-weight: 400; font-size: 1.15rem; max-width: 680px; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">Fire suppression, sprinklers, and mist systems — installed by QSD's IFC &amp; FIRAS-certified engineers with complete photographic handover documentation. Serving housing associations, local authorities, and developers across Birmingham and the West Midlands.</p>
         <div class="hero-buttons" style="justify-content: flex-start; margin-bottom: 0; flex-direction: column; align-items: flex-start; gap: 12px;">
