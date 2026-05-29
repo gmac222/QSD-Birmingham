@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Report : firestoppingbirmingham.co.uk</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --orange: #f97316;
+    --orange-bg: rgba(249,115,22,0.12);
+    --orange-border: rgba(249,115,22,0.25);
+    --purple: #a78bfa;
+    --purple-bg: rgba(167,139,250,0.08);
+    --purple-border: rgba(167,139,250,0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: ambientDrift 20s ease-in-out infinite;
+  }
+  @keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -1%); }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+  /* Layout */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header / Hero */
+  .header {
+    padding: 40px 0;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .header-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  /* Score Circle with SVG ring */
+  .score-section {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+  }
+  .score-circle-wrap { position: relative; flex-shrink: 0; }
+  .score-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  .score-circle svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .score-circle svg circle {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+  }
+  .score-circle svg .bg-ring { stroke: rgba(255,255,255,0.06); }
+  .score-circle svg .progress-ring {
+    stroke: var(--accent);
+    stroke-dasharray: 502;
+    stroke-dashoffset: 161;
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+  .score-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  .score-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+  }
+  .score-grade {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    margin-top: 2px;
+  }
+  .score-details { flex: 1; }
+  .score-details h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .score-details p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  /* Sub-scores */
+  .sub-scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .sub-score {
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .sub-score-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .sub-score-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .sub-score-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .sub-score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease-out;
+  }
+
+  /* Tabs */
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .tabs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .tab-btn:hover { color: var(--text-secondary); }
+  .tab-btn.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  .tab-btn .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    color: var(--text-secondary);
+  }
+  .tab-btn.active .tab-count {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* Tab Content */
+  .tab-content { display: none; padding: 40px 0 80px; }
+  .tab-content.active { display: block; }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-hover); }
+  .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border-hover); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-critical { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-high { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-medium { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-low { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-pass { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-warning { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-fail { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  /* Finding items */
+  .finding {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+  .finding-status.pass { background: var(--green); box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+  .finding-status.warning { background: var(--yellow); box-shadow: 0 0 6px rgba(234,179,8,0.4); }
+  .finding-status.fail { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+  .finding-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .finding-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .finding-rec {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(99,102,241,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Collapsible */
+  .collapsible {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .collapsible:hover { border-color: var(--border-hover); }
+  .collapsible-header {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .collapsible-header:hover { background: rgba(255,255,255,0.02); }
+  .collapsible-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .collapsible-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+  .collapsible.open .collapsible-body {
+    max-height: 5000px;
+  }
+  .collapsible-body-inner {
+    padding: 0 24px 24px;
+  }
+  .collapse-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.3s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .collapsible.open .collapse-icon { transform: rotate(180deg); }
+
+  /* Page table */
+  .page-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  .page-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .page-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: top;
+  }
+  .page-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .page-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  /* Checklist */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .check-icon.pass {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid var(--green-border);
+  }
+  .check-icon.fail {
+    background: var(--red-bg);
+    color: var(--red);
+    border: 1px solid var(--red-border);
+  }
+  .check-icon.warn {
+    background: var(--yellow-bg);
+    color: var(--yellow);
+    border: 1px solid var(--yellow-border);
+  }
+  .check-text {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .check-text.muted {
+    color: var(--text-secondary);
+  }
+
+  /* Action items */
+  .action-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .action-item:hover { border-color: var(--border-hover); }
+  .action-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+    opacity: 0.5;
+  }
+  .action-content { flex: 1; }
+  .action-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .action-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .action-impact {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* Content clusters */
+  .cluster {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .cluster-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--purple);
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .cluster-pages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cluster-page {
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-border);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+  }
+  .cluster-page.pillar {
+    background: rgba(167,139,250,0.15);
+    border-color: rgba(167,139,250,0.3);
+    color: var(--purple);
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .score-section { flex-direction: column; text-align: center; padding: 24px; gap: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .sub-scores { grid-template-columns: repeat(2, 1fr); }
+    .action-item { flex-direction: column; gap: 12px; }
+  }
+
+  /* Print */
+  @media print {
+    .tabs { display: none; }
+    .tab-content { display: block !important; page-break-before: always; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="header-badge"><span class="dot"></span> Site-Wide Technical SEO Audit</div>
+    <h1>firestoppingbirmingham.co.uk</h1>
+    <p class="subtitle">Comprehensive analysis of 6 pages - Generated May 29, 2026</p>
+  </div>
+</div>
+
+<!-- Score overview -->
+<div class="container" style="padding-top: 0; padding-bottom: 32px;">
+  <div class="score-section">
+    <div class="score-circle-wrap">
+      <div class="score-circle">
+        <svg viewBox="0 0 160 160">
+          <circle class="bg-ring" cx="80" cy="80" r="74"/>
+          <circle class="progress-ring" cx="80" cy="80" r="74"/>
+        </svg>
+        <span class="score-number">68</span>
+        <span class="score-grade">Grade: C</span>
+        <span class="score-label">Overall Health</span>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Strong foundation, but critical technical indexing issues are blocking visibility.</h2>
+      <p>Your website's code has a solid baseline structure, but severe cross-domain canonical and schema mismatches are actively preventing Google from indexing your pages. Correcting these technical errors is the single most critical step to restoring your search presence.</p>
+      <div class="sub-scores">
+        <div class="sub-score">
+          <div class="sub-score-label">Technical</div>
+          <div class="sub-score-value" style="color: var(--yellow)">70</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:70%; background: var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Content</div>
+          <div class="sub-score-value" style="color: var(--yellow)">65</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:65%; background: var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Architecture</div>
+          <div class="sub-score-value" style="color: var(--green)">85</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:85%; background: var(--green)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Cross-Page</div>
+          <div class="sub-score-value" style="color: var(--green)">85</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:85%; background: var(--green)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-label">Social &amp; Schema</div>
+          <div class="sub-score-value" style="color: var(--orange)">45</div>
+          <div class="sub-score-bar"><div class="sub-score-bar-fill" style="width:45%; background: var(--orange)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('executive')">Executive Summary</button>
+    <button class="tab-btn" onclick="switchTab('pages')">Page Breakdown <span class="tab-count">6</span></button>
+    <button class="tab-btn" onclick="switchTab('sitewide')">Site-Wide Issues <span class="tab-count">11</span></button>
+    <button class="tab-btn" onclick="switchTab('technical')">Technical</button>
+    <button class="tab-btn" onclick="switchTab('actions')">Action Plan</button>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: EXECUTIVE SUMMARY ==================== -->
+<div id="tab-executive" class="tab-content active">
+<div class="container">
+
+  <div class="section-title">Executive Summary</div>
+  <div class="section-subtitle">High-level overview of firestoppingbirmingham.co.uk's SEO health and top priorities</div>
+
+  <!-- Quick Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Pages Audited</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">7</div>
+      <div class="stat-label">Critical Issues</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">High Priority</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Warnings</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">925</div>
+      <div class="stat-label">Avg Word Count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">100%</div>
+      <div class="stat-label">Schema Coverage</div>
+    </div>
+  </div>
+
+  <!-- Key Findings -->
+  <div class="card" style="margin-bottom: 24px;">
+    <div class="card-title" style="margin-bottom: 16px;">Key Findings</div>
+    <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.8;">
+      <p>The audit reveals a critical technical blocker: all canonical tags, Open Graph URLs, and structured data point to a different domain (qsdfire.com) instead of firestoppingbirmingham.co.uk. This tells search engines that your site is a duplicate, causing them to de-index firestoppingbirmingham.co.uk. Additionally, there are severe postcode and address conflicts across your pages, along with a placeholder phone number (0800 123 4567). Fixing these technical issues is essential to get your pages indexed.</p>
+      <br>
+      <p>Furthermore, the site contains multiple references to the incorrect British Standard (BS 9251 is for sprinklers, not fire stopping). The BAFSA logo (British Automatic Fire Sprinkler Association) is also displayed, which is incorrect for a passive fire protection business. Rectifying these compliance claims is crucial to satisfy both search engine quality evaluators and commercial clients.</p>
+    </div>
+  </div>
+
+  <!-- Top 3 Priorities -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Top 3 Priorities</div>
+  <div class="section-subtitle">The highest-impact actions to take right now</div>
+
+  <div class="action-item">
+    <div class="action-number">1</div>
+    <div class="action-content">
+      <div class="action-title">Correct Site-Wide Canonical Tags</div>
+      <div class="action-desc">Update the canonical links in all HTML files to point to the live domain: https://firestoppingbirmingham.co.uk/. Currently, they point to https://qsdfire.com/, which prevents search engines from indexing your site.</div>
+      <div class="action-impact">Expected impact: Crucial. This will resolve the indexing problems by telling search engines that firestoppingbirmingham.co.uk is the primary, authoritative site.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">2</div>
+    <div class="action-content">
+      <div class="action-title">Fix LocalBusiness and Service Schema Markup</div>
+      <div class="action-desc">Update all JSON-LD schema blocks across the site. Replace references to qsdfire.com in @id, url, image, and logo fields with firestoppingbirmingham.co.uk. Swap the placeholder telephone (0800 123 4567) and placeholder emails.</div>
+      <div class="action-impact">Expected impact: Restores local business rich snippets and validates the schema markup for search engines.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+  <div class="action-item">
+    <div class="action-number">3</div>
+    <div class="action-content">
+      <div class="action-title">Resolve Postcode and Business Address Conflicts</div>
+      <div class="action-desc">Address the conflicting details across the site: the homepage schema lists B1 1AA (placeholder postcode in Birmingham), about.html schema lists Wrexham, and the footer lists Flintshire. Choose a single real business address and implement it consistently. Use the areaServed array in schema to target Birmingham and surrounding West Midlands regions.</div>
+      <div class="action-impact">Expected impact: Stabilises local search trust and signals correct location coordinates to Google.</div>
+    </div>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 2: PAGE-BY-PAGE BREAKDOWN ==================== -->
+<div id="tab-pages" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Page-by-Page Breakdown</div>
+  <div class="section-subtitle">Individual audit results for each crawled page</div>
+
+  <!-- Summary Table -->
+  <div class="card" style="overflow-x: auto; padding: 0;">
+    <table class="page-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Title</th>
+          <th>Words</th>
+          <th>H1</th>
+          <th>Meta Desc</th>
+          <th>Schema</th>
+          <th>OG Tags</th>
+          <th>Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="page-url">/index.html</span></td>
+          <td>Fire Stopping Birmingham by QSD Fire</td>
+          <td>~1500</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/about.html</span></td>
+          <td>About | QSD Fire Systems</td>
+          <td>~450</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/bsa-2022.html</span></td>
+          <td>Building Safety Act 2022 Compliance</td>
+          <td>~1000</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/privacy.html</span></td>
+          <td>Privacy policy</td>
+          <td>~800</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/terms.html</span></td>
+          <td>Terms and conditions</td>
+          <td>~800</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td><span class="page-url">/cookie-policy.html</span></td>
+          <td>Cookie Policy | QSD Fire Systems</td>
+          <td>~800</td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-pass">Pass</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td><span class="badge badge-fail">Fail</span></td>
+          <td>3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Detailed per-page collapsibles -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">/index.html (Homepage)</span>
+        <span class="badge badge-fail">5 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Canonical tag points to different domain</h4>
+            <p>The canonical tag points to https://qsdfire.com/ instead of the current live domain. This causes search engines to ignore this homepage entirely.</p>
+            <div class="finding-rec">Replace with: &lt;link rel="canonical" href="https://firestoppingbirmingham.co.uk/"&gt;</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>LocalBusiness schema misconfigured</h4>
+            <p>Schema references qsdfire.com in multiple fields and has a placeholder telephone (0800 123 4567) and placeholder email (info@qsdfire.com).</p>
+            <div class="finding-rec">Update the schema fields to use firestoppingbirmingham.co.uk and real business contact details.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Incorrect British Standard (BS 9251) cited</h4>
+            <p>The page cites BS 9251:2021, which is for sprinkler systems, not fire stopping. This is a severe compliance claim error.</p>
+            <div class="finding-rec">Replace with passive fire stopping standards such as BS EN 1366-3 and BS EN 1366-4.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Open Graph and Twitter URL mismatch</h4>
+            <p>The og:url property points to https://qsdfire.com/ instead of firestoppingbirmingham.co.uk.</p>
+            <div class="finding-rec">Update the meta og:url and twitter:url tags to match the live URL.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Meta description too long</h4>
+            <p>Meta description is 182 characters, exceeding the 155-160 character limit. It will be truncated in search results.</p>
+            <div class="finding-rec">Shorten the description to 150-160 characters.</div>
+          </div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">/about.html</span>
+        <span class="badge badge-fail">4 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Canonical tag points to different domain</h4>
+            <p>Points to https://qsdfire.com/about.html, leading to duplicate content indexation suppression.</p>
+            <div class="finding-rec">Replace with: &lt;link rel="canonical" href="https://firestoppingbirmingham.co.uk/about.html"&gt;</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Conflicting business address in schema</h4>
+            <p>Schema points to Wrexham, North Wales (LL13 7AA), which conflicts with the Flintshire footer address.</p>
+            <div class="finding-rec">Use one single authoritative business address across the entire site.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Cites wrong British Standard (BS 9251)</h4>
+            <p>Cites BS 9251 as a core capability stat. This standard is irrelevant for fire stopping.</p>
+            <div class="finding-rec">Replace stats and claims with correct passive fire protection standards.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Open Graph URL points to different domain</h4>
+            <p>og:url points to https://qsdfire.com/about.html.</p>
+            <div class="finding-rec">Update to https://firestoppingbirmingham.co.uk/about.html.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="collapsible-title">
+        <span class="page-url">/bsa-2022.html</span>
+        <span class="badge badge-fail">4 issues</span>
+      </span>
+      <span class="collapse-icon">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Canonical tag points to different domain</h4>
+            <p>Points to https://qsdfire.com/bsa-2022.html.</p>
+            <div class="finding-rec">Update canonical to point to https://firestoppingbirmingham.co.uk/bsa-2022.html.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>Page missing from sitemap.xml</h4>
+            <p>This key compliance page is missing from sitemap.xml, meaning search engines may fail to crawl it.</p>
+            <div class="finding-rec">Add the page URL to sitemap.xml.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status fail"></div>
+          <div class="finding-content">
+            <h4>LocalBusiness schema points to different domain</h4>
+            <p>Schema block points to qsdfire.com and contains placeholder business data.</p>
+            <div class="finding-rec">Correct references to match firestoppingbirmingham.co.uk.</div>
+          </div>
+          <span class="badge badge-critical">Critical</span>
+        </div>
+        <div class="finding">
+          <div class="finding-status warning"></div>
+          <div class="finding-content">
+            <h4>Open Graph URL mismatch</h4>
+            <p>og:url points to qsdfire.com domain.</p>
+            <div class="finding-rec">Correct to firestoppingbirmingham.co.uk domain.</div>
+          </div>
+          <span class="badge badge-high">High</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 3: SITE-WIDE ISSUES ==================== -->
+<div id="tab-sitewide" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Site-Wide Issues</div>
+  <div class="section-subtitle">Cross-cutting concerns that affect multiple pages</div>
+
+  <!-- Duplicate Content & Cannibalisation -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Duplicate Content &amp; Cannibalisation</div>
+    
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>Canonical tags point to a different domain (qsdfire.com)</h4>
+        <p>Every single page on the site declares its canonical URL on qsdfire.com. Since Google resolves duplicate pages to their canonical targets, it treats firestoppingbirmingham.co.uk as a duplicate domain and de-indexes it.</p>
+        <div class="finding-rec">Change all canonical tags across all HTML files to reference firestoppingbirmingham.co.uk.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>LocalBusiness schema points to different domain and has placeholder NAP data</h4>
+        <p>The structured data on every page is configured for the domain qsdfire.com, which invalidates the entity resolution for this site. The telephone is a placeholder (0800 123 4567) and emails point to the wrong domain.</p>
+        <div class="finding-rec">Update the schema fields to match firestoppingbirmingham.co.uk and include real contact information.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+  </div>
+
+  <!-- Consistency Issues -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Consistency &amp; Claim Compliance</div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>Citing incorrect British Standard (BS 9251)</h4>
+        <p>BS 9251:2021 is the British Standard for sprinkler installations, not fire stopping. Citing this standard in stats grids, schemas, and policy pages ruins credibility for professional surveyors and violates E-E-A-T guidelines.</p>
+        <div class="finding-rec">Remove all references to BS 9251 and replace them with correct fire stopping standards (e.g. BS EN 1366-3, BS EN 1366-4, BS 8214).</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>BAFSA logo displayed</h4>
+        <p>The BAFSA logo (British Automatic Fire Sprinkler Association) is shown in the accreditation section. This is incorrect for a passive fire protection business.</p>
+        <div class="finding-rec">Remove the BAFSA logo and display relevant passive fire accreditation credentials (e.g. IFC, FIRAS, ASFP).</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>Conflicting business address coordinates</h4>
+        <p>The homepage schema uses B1 1AA (a placeholder postcode in central Birmingham), about.html schema uses Wrexham, and the footers display Flintshire. This address mismatch prevents search engines from confirming your physical operating location.</p>
+        <div class="finding-rec">Standardise the address. Use your real office location and set Birmingham as an areaServed parameter in schema.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+  </div>
+
+  <!-- robots.txt & Sitemap -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Robots.txt &amp; Sitemap</div>
+
+    <div class="finding">
+      <div class="finding-status fail"></div>
+      <div class="finding-content">
+        <h4>bsa-2022.html missing from sitemap.xml</h4>
+        <p>The compliance page for the Building Safety Act 2022 is linked in the nav, but missing from the sitemap. This makes it harder for search engine crawlers to discover and prioritize indexing this page.</p>
+        <div class="finding-rec">Add the page URL to the sitemap file.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+  </div>
+
+  <!-- Security Headers -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 16px;">Security &amp; Server Headers</div>
+
+    <div class="finding">
+      <div class="finding-status warning"></div>
+      <div class="finding-content">
+        <h4>HTTP Security Headers not configured</h4>
+        <p>Common security response headers (HSTS, CSP, X-Content-Type-Options) are missing or not verifiable. While not directly ranking factors, they affect the Google Page Experience score and protect against script injections.</p>
+        <div class="finding-rec">Configure security headers on your hosting server (HSTS, Content-Security-Policy, X-Frame-Options).</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 4: TECHNICAL ==================== -->
+<div id="tab-technical" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Technical SEO</div>
+  <div class="section-subtitle">Infrastructure, performance indicators, and technical implementation</div>
+
+  <!-- Technical Checklist -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom: 20px;">Implementation Checklist</div>
+    
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">HTTPS enabled across all pages</div>
+    </div>
+    
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">Viewport meta set correctly on all pages (mobile responsive)</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">robots.txt exists and is valid</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon pass">&#10003;</div>
+      <div class="check-text">sitemap.xml exists and is valid</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">Canonical tags misconfigured (point to wrong domain)</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">LocalBusiness schema points to wrong domain and contains placeholder details</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text muted">Key compliance page (bsa-2022.html) missing from sitemap</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon warn">!</div>
+      <div class="check-text">Open Graph and Twitter Card tags point to wrong domain</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon warn">!</div>
+      <div class="check-text">Image alt texts are generic or missing</div>
+    </div>
+
+  </div>
+
+  <!-- Schema Strategy -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Schema Markup Strategy</div>
+  <div class="section-subtitle">Current structured data and recommended additions</div>
+  <div class="card" style="padding: 24px;">
+    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Your site has structured data blocks on all 6 pages. However, they are invalid for firestoppingbirmingham.co.uk because they reference the wrong domain (qsdfire.com) and include placeholder NAP coordinates. Once you fix these URLs, consider wrapping the homepage FAQ section in an FAQPage schema to acquire rich snippet displays on Google.</p>
+  </div>
+
+  <!-- Performance Indicators -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Performance Indicators</div>
+  <div class="section-subtitle">Resource counts, image optimization, and loading patterns</div>
+  
+  <div class="finding">
+    <div class="finding-status warning"></div>
+    <div class="finding-content">
+      <h4>No WebP/AVIF modern image formats and missing lazy-loading</h4>
+      <p>All images on the website are PNGs, and the site logo is 521 KB, which is very heavy for a header logo. The hero background utilizes a frames sequence loaded via JavaScript, which creates a significant load burden for mobile screens.</p>
+      <div class="finding-rec">Convert logos and static icons to WebP format, specify width and height attributes, and add loading="lazy" to all images below the fold.</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+  <div class="finding">
+    <div class="finding-status warning"></div>
+    <div class="finding-content">
+      <h4>Image alt attributes are generic or empty</h4>
+      <p>Accreditation logos on the homepage and about page use the generic alt text alt="Accreditation", which misses an opportunity to reinforce industry keywords (e.g. IFC Certification, FIRAS approved, ASFP).</p>
+      <div class="finding-rec">Rewrite alt tags to use the specific accreditation name (e.g. alt="IFC Certification passive fire protection").</div>
+    </div>
+    <span class="badge badge-medium">Medium</span>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== TAB 5: ACTION PLAN ==================== -->
+<div id="tab-actions" class="tab-content">
+<div class="container">
+
+  <div class="section-title">Prioritized Action Plan</div>
+  <div class="section-subtitle">Every recommendation ranked by impact, grouped by effort level</div>
+
+  <!-- Quick Wins -->
+  <div class="section-title" style="font-size: 18px; color: var(--green);">Quick Wins <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">: less than 1 hour each</span></div>
+  <div style="margin-bottom: 24px;">
+    
+    <div class="action-item">
+      <div class="action-number">1</div>
+      <div class="action-content">
+        <div class="action-title">Correct Canonical URL Tags</div>
+        <div class="action-desc">Update the canonical links in all 6 HTML files to reference https://firestoppingbirmingham.co.uk/ instead of qsdfire.com.</div>
+        <div class="action-impact">Expected impact: Crucial. Google will immediately recognize the site as indexable.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">2</div>
+      <div class="action-content">
+        <div class="action-title">Add bsa-2022.html to sitemap.xml</div>
+        <div class="action-desc">Insert the &lt;url&gt; block for bsa-2022.html into the sitemap file.</div>
+        <div class="action-impact">Expected impact: Ensures search engine crawlers discover and index the page.</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">3</div>
+      <div class="action-content">
+        <div class="action-title">Update Open Graph &amp; Twitter Meta URLs</div>
+        <div class="action-desc">Change the og:url properties to match the firestoppingbirmingham.co.uk domain.</div>
+        <div class="action-impact">Expected impact: Fixed social sharing preview cards on LinkedIn and other platforms.</div>
+      </div>
+      <span class="badge badge-high">High</span>
+    </div>
+
+  </div>
+
+  <!-- High Impact -->
+  <div class="section-title" style="font-size: 18px; color: var(--orange);">High Impact <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">: 1-4 hours each</span></div>
+  <div style="margin-bottom: 24px;">
+    
+    <div class="action-item">
+      <div class="action-number">4</div>
+      <div class="action-content">
+        <div class="action-title">Fix LocalBusiness and Service Schema Blocks</div>
+        <div class="action-desc">Replace references to qsdfire.com in the JSON-LD schemas. Add your real phone number, real business email, and office location coordinates.</div>
+        <div class="action-impact">Expected impact: Corrects local business rich snippets and validates entity resolution on search maps.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">5</div>
+      <div class="action-content">
+        <div class="action-title">Remove BS 9251 and Sprinkler Claims</div>
+        <div class="action-desc">Search and replace all references to BS 9251:2021 (sprinklers) and replace them with passive fire stopping standards like BS EN 1366-3. Remove references to "hydraulically calculated" systems.</div>
+        <div class="action-impact">Expected impact: Prevents rapid bounces by commercial surveyors and aligns the content with correct regulatory claims.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-number">6</div>
+      <div class="action-content">
+        <div class="action-title">Remove BAFSA Logo and Update Accreditations Alt Text</div>
+        <div class="action-desc">Remove the BAFSA logo from the accreditation strip. Add relevant third-party fire stopping logos. Rewrite the alt attributes of all logos to name the specific accreditation (e.g. alt="FIRAS accredited passive fire contractor").</div>
+        <div class="action-impact">Expected impact: Builds industry compliance credibility and adds context-rich semantic keywords to your images.</div>
+      </div>
+      <span class="badge badge-critical">Critical</span>
+    </div>
+
+  </div>
+
+  <!-- Strategic Initiatives -->
+  <div class="section-title" style="font-size: 18px; color: var(--purple);">Strategic Initiatives <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">: ongoing</span></div>
+  <div style="margin-bottom: 24px;">
+    
+    <div class="action-item">
+      <div class="action-number">7</div>
+      <div class="action-content">
+        <div class="action-title">Convert Images to WebP and Optimize the Hero Sequence</div>
+        <div class="action-desc">Convert heavy PNGs to WebP format to decrease the page size. Optimize the javascript hero frames sequence to prevent slow mobile rendering performance.</div>
+        <div class="action-impact">Expected impact: Faster loading times and better mobile page experience score.</div>
+      </div>
+      <span class="badge badge-medium">Medium</span>
+    </div>
+
+  </div>
+
+  <!-- Full Checklist -->
+  <div class="section-title" style="font-size: 18px; margin-top: 32px;">Full Implementation Checklist</div>
+  <div class="section-subtitle">Every actionable recommendation in one checklist</div>
+  <div class="card">
+    
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Change canonical tags to firestoppingbirmingham.co.uk on all 6 pages</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Update @id, url, and image references in structured data schema on all pages</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Replace the placeholder telephone (0800 123 4567) and placeholder emails in all schema blocks</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Resolve the address conflict: standardise to a single office address across schemas and footers</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Remove references to BS 9251:2021 (residential fire sprinklers) across the site and replace with correct standards</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Remove the BAFSA logo from the accreditation strips</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Insert bsa-2022.html into sitemap.xml</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Correct Open Graph meta URLs (og:url) to match firestoppingbirmingham.co.uk</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Update the alt attributes on all accreditation logos from generic text to their official names</div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon fail">&#10007;</div>
+      <div class="check-text">Convert site images from PNG to WebP format to resolve page speed issues</div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.closest('.tab-btn').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
