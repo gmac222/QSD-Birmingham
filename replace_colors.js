@@ -14,7 +14,7 @@ for (const file of files) {
   content = content.replace(/249, 115, 22/g, '248, 105, 13');
   content = content.replace(/249,115,22/g, '248,105,13');
   
-  // Replace backgrounds to QSD dark blue (#0A1925)
+  // Replace backgrounds to fire stopping dark blue (#0A1925)
   content = content.replace(/#08090a/g, '#0A1925');
   content = content.replace(/#0a0a0f/g, '#0A1925');
   content = content.replace(/#050B14/g, '#0A1925');

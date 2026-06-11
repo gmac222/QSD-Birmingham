@@ -1,6 +1,6 @@
-# QSD Fire Systems: New Page Skill
+# Fire Stopping Birmingham: New Page Skill
 
-This workflow describes the process for creating a new supporting page for the QSD Fire Systems website, ensuring it maintains design consistency, SEO performance, and proper integration with the main site architecture.
+This workflow describes the process for creating a new supporting page for the Fire Stopping Birmingham website, ensuring it maintains design consistency, SEO performance, and proper integration with the main site architecture.
 
 ## Workflow Steps
 
@@ -27,7 +27,7 @@ This workflow describes the process for creating a new supporting page for the Q
 - **External Links**: Any outbound links to authoritative sources (like gov.uk or HSE) must use `target="_blank" rel="nofollow noopener"` to protect site authority.
 
 ### 5. Site Integration (Internal Linking)
-- **Footer Updates**: Update the global footer on *all* pages to include a link to the newly created page. Ensure the QSD Fire Systems business address is present.
+- **Footer Updates**: Update the global footer on *all* pages to include a link to the newly created page. Ensure the Fire Stopping Birmingham business address is present.
 - **Navigation**: Update the header navigation pill to link to the new page if relevant.
 - **Contextual Linking**: Add inline links from relevant feature cards or text blocks in `index.html` directing users to the new supporting page. Ensure internal links use `color: var(--accent)` and `text-decoration: underline`.
 

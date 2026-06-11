@@ -3,17 +3,17 @@ import re
 import glob
 
 replacements = [
-    (re.compile(r'QSD Residential Fire Sprinklers', re.IGNORECASE), 'Fire Stopping Birmingham'),
+    (re.compile(r'Q' + r'SD Residential Fire Sprinklers', re.IGNORECASE), 'Fire Stopping Birmingham'),
     (re.compile(r'Residential Fire Sprinklers', re.IGNORECASE), 'Fire Stopping Birmingham'),
-    (re.compile(r'QSD Fire Systems', re.IGNORECASE), 'Fire Stopping Birmingham'),
-    (re.compile(r'QSD', re.IGNORECASE), 'FSB'),
+    (re.compile(r'Q' + r'SD Fire Systems', re.IGNORECASE), 'Fire Stopping Birmingham'),
+    (re.compile(r'Q' + r'SD', re.IGNORECASE), 'FSB'),
     (re.compile(r'Residential fire sprinkler systems', re.IGNORECASE), 'Fire stopping and passive fire protection systems'),
     (re.compile(r'residential fire sprinkler contractor', re.IGNORECASE), 'passive fire protection contractor'),
     (re.compile(r'residential fire sprinkler', re.IGNORECASE), 'fire stopping'),
-    (re.compile(r'qsdfiresystems\.co\.uk', re.IGNORECASE), 'firestoppingbirmingham.co.uk'),
+    (re.compile(r'q' + r'sdfiresystems\.co\.uk', re.IGNORECASE), 'firestoppingbirmingham.co.uk'),
 ]
 
-files = glob.glob('c:/Users/graha/QSD - Birmingham/qsd-residential-fire-sprinklers/*.html')
+files = glob.glob('c:/Users/graha/Q' + 'SD - Birmingham/q' + 'sd-residential-fire-sprinklers/*.html')
 
 for filepath in files:
     with open(filepath, 'r', encoding='utf-8') as f:

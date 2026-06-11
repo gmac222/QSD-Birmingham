@@ -770,7 +770,7 @@
   <div class="card" style="margin-bottom: 24px;">
     <div class="card-title" style="margin-bottom: 16px;">Key Findings</div>
     <div style="color: var(--text-secondary); font-size: 15px; line-height: 1.8;">
-      <p>The audit reveals a critical technical blocker: all canonical tags, Open Graph URLs, and structured data point to a different domain (qsdfire.com) instead of firestoppingbirmingham.co.uk. This tells search engines that your site is a duplicate, causing them to de-index firestoppingbirmingham.co.uk. Additionally, there are severe postcode and address conflicts across your pages, along with a placeholder phone number (0800 123 4567). Fixing these technical issues is essential to get your pages indexed.</p>
+      <p>The audit reveals a critical technical blocker: all canonical tags, Open Graph URLs, and structured data point to a different domain (the old corporate domain) instead of firestoppingbirmingham.co.uk. This tells search engines that your site is a duplicate, causing them to de-index firestoppingbirmingham.co.uk. Additionally, there are severe postcode and address conflicts across your pages, along with a placeholder phone number (0800 123 4567). Fixing these technical issues is essential to get your pages indexed.</p>
       <br>
       <p>Furthermore, the site contains multiple references to the incorrect British Standard (BS 9251 is for sprinklers, not fire stopping). The BAFSA logo (British Automatic Fire Sprinkler Association) is also displayed, which is incorrect for a passive fire protection business. Rectifying these compliance claims is crucial to satisfy both search engine quality evaluators and commercial clients.</p>
     </div>
@@ -784,7 +784,7 @@
     <div class="action-number">1</div>
     <div class="action-content">
       <div class="action-title">Correct Site-Wide Canonical Tags</div>
-      <div class="action-desc">Update the canonical links in all HTML files to point to the live domain: https://firestoppingbirmingham.co.uk/. Currently, they point to https://qsdfire.com/, which prevents search engines from indexing your site.</div>
+      <div class="action-desc">Update the canonical links in all HTML files to point to the live domain: https://firestoppingbirmingham.co.uk/. Currently, they point to the old corporate domain, which prevents search engines from indexing your site.</div>
       <div class="action-impact">Expected impact: Crucial. This will resolve the indexing problems by telling search engines that firestoppingbirmingham.co.uk is the primary, authoritative site.</div>
     </div>
     <span class="badge badge-critical">Critical</span>
@@ -794,7 +794,7 @@
     <div class="action-number">2</div>
     <div class="action-content">
       <div class="action-title">Fix LocalBusiness and Service Schema Markup</div>
-      <div class="action-desc">Update all JSON-LD schema blocks across the site. Replace references to qsdfire.com in @id, url, image, and logo fields with firestoppingbirmingham.co.uk. Swap the placeholder telephone (0800 123 4567) and placeholder emails.</div>
+      <div class="action-desc">Update all JSON-LD schema blocks across the site. Replace references to the old domain in @id, url, image, and logo fields with firestoppingbirmingham.co.uk. Swap the placeholder telephone (0800 123 4567) and placeholder emails.</div>
       <div class="action-impact">Expected impact: Restores local business rich snippets and validates the schema markup for search engines.</div>
     </div>
     <span class="badge badge-critical">Critical</span>
@@ -838,7 +838,7 @@
       <tbody>
         <tr>
           <td><span class="page-url">/index.html</span></td>
-          <td>Fire Stopping Birmingham by QSD Fire</td>
+          <td>Fire Stopping Birmingham</td>
           <td>~1500</td>
           <td><span class="badge badge-pass">Pass</span></td>
           <td><span class="badge badge-fail">Fail</span></td>
@@ -848,7 +848,7 @@
         </tr>
         <tr>
           <td><span class="page-url">/about.html</span></td>
-          <td>About | QSD Fire Systems</td>
+          <td>About | Fire Stopping Birmingham</td>
           <td>~450</td>
           <td><span class="badge badge-pass">Pass</span></td>
           <td><span class="badge badge-pass">Pass</span></td>
@@ -888,7 +888,7 @@
         </tr>
         <tr>
           <td><span class="page-url">/cookie-policy.html</span></td>
-          <td>Cookie Policy | QSD Fire Systems</td>
+          <td>Cookie Policy | Fire Stopping Birmingham</td>
           <td>~800</td>
           <td><span class="badge badge-pass">Pass</span></td>
           <td><span class="badge badge-pass">Pass</span></td>
@@ -915,7 +915,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>Canonical tag points to different domain</h4>
-            <p>The canonical tag points to https://qsdfire.com/ instead of the current live domain. This causes search engines to ignore this homepage entirely.</p>
+            <p>The canonical tag points to the old corporate domain instead of the current live domain. This causes search engines to ignore this homepage entirely.</p>
             <div class="finding-rec">Replace with: &lt;link rel="canonical" href="https://firestoppingbirmingham.co.uk/"&gt;</div>
           </div>
           <span class="badge badge-critical">Critical</span>
@@ -924,7 +924,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>LocalBusiness schema misconfigured</h4>
-            <p>Schema references qsdfire.com in multiple fields and has a placeholder telephone (0800 123 4567) and placeholder email (info@qsdfire.com).</p>
+            <p>Schema references the old corporate domain in multiple fields and has a placeholder telephone (0800 123 4567) and placeholder email.</p>
             <div class="finding-rec">Update the schema fields to use firestoppingbirmingham.co.uk and real business contact details.</div>
           </div>
           <span class="badge badge-critical">Critical</span>
@@ -942,7 +942,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>Open Graph and Twitter URL mismatch</h4>
-            <p>The og:url property points to https://qsdfire.com/ instead of firestoppingbirmingham.co.uk.</p>
+            <p>The og:url property points to the old corporate domain instead of firestoppingbirmingham.co.uk.</p>
             <div class="finding-rec">Update the meta og:url and twitter:url tags to match the live URL.</div>
           </div>
           <span class="badge badge-high">High</span>
@@ -974,7 +974,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>Canonical tag points to different domain</h4>
-            <p>Points to https://qsdfire.com/about.html, leading to duplicate content indexation suppression.</p>
+            <p>Points to the old corporate domain about page, leading to duplicate content indexation suppression.</p>
             <div class="finding-rec">Replace with: &lt;link rel="canonical" href="https://firestoppingbirmingham.co.uk/about.html"&gt;</div>
           </div>
           <span class="badge badge-critical">Critical</span>
@@ -1001,7 +1001,7 @@
           <div class="finding-status warning"></div>
           <div class="finding-content">
             <h4>Open Graph URL points to different domain</h4>
-            <p>og:url points to https://qsdfire.com/about.html.</p>
+            <p>og:url points to the old corporate domain.</p>
             <div class="finding-rec">Update to https://firestoppingbirmingham.co.uk/about.html.</div>
           </div>
           <span class="badge badge-high">High</span>
@@ -1024,7 +1024,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>Canonical tag points to different domain</h4>
-            <p>Points to https://qsdfire.com/bsa-2022.html.</p>
+            <p>Points to the old corporate domain.</p>
             <div class="finding-rec">Update canonical to point to https://firestoppingbirmingham.co.uk/bsa-2022.html.</div>
           </div>
           <span class="badge badge-critical">Critical</span>
@@ -1042,7 +1042,7 @@
           <div class="finding-status fail"></div>
           <div class="finding-content">
             <h4>LocalBusiness schema points to different domain</h4>
-            <p>Schema block points to qsdfire.com and contains placeholder business data.</p>
+            <p>Schema block points to the old corporate domain and contains placeholder business data.</p>
             <div class="finding-rec">Correct references to match firestoppingbirmingham.co.uk.</div>
           </div>
           <span class="badge badge-critical">Critical</span>
@@ -1051,7 +1051,7 @@
           <div class="finding-status warning"></div>
           <div class="finding-content">
             <h4>Open Graph URL mismatch</h4>
-            <p>og:url points to qsdfire.com domain.</p>
+            <p>og:url points to the old corporate domain.</p>
             <div class="finding-rec">Correct to firestoppingbirmingham.co.uk domain.</div>
           </div>
           <span class="badge badge-high">High</span>
@@ -1077,8 +1077,8 @@
     <div class="finding">
       <div class="finding-status fail"></div>
       <div class="finding-content">
-        <h4>Canonical tags point to a different domain (qsdfire.com)</h4>
-        <p>Every single page on the site declares its canonical URL on qsdfire.com. Since Google resolves duplicate pages to their canonical targets, it treats firestoppingbirmingham.co.uk as a duplicate domain and de-indexes it.</p>
+        <h4>Canonical tags point to a different domain (the old corporate domain)</h4>
+        <p>Every single page on the site declares its canonical URL on the old corporate domain. Since Google resolves duplicate pages to their canonical targets, it treats firestoppingbirmingham.co.uk as a duplicate domain and de-indexes it.</p>
         <div class="finding-rec">Change all canonical tags across all HTML files to reference firestoppingbirmingham.co.uk.</div>
       </div>
       <span class="badge badge-critical">Critical</span>
@@ -1088,7 +1088,7 @@
       <div class="finding-status fail"></div>
       <div class="finding-content">
         <h4>LocalBusiness schema points to different domain and has placeholder NAP data</h4>
-        <p>The structured data on every page is configured for the domain qsdfire.com, which invalidates the entity resolution for this site. The telephone is a placeholder (0800 123 4567) and emails point to the wrong domain.</p>
+        <p>The structured data on every page is configured for the old corporate domain, which invalidates the entity resolution for this site. The telephone is a placeholder (0800 123 4567) and emails point to the wrong domain.</p>
         <div class="finding-rec">Update the schema fields to match firestoppingbirmingham.co.uk and include real contact information.</div>
       </div>
       <span class="badge badge-critical">Critical</span>
@@ -1229,7 +1229,7 @@
   <div class="section-title" style="font-size: 18px; margin-top: 32px;">Schema Markup Strategy</div>
   <div class="section-subtitle">Current structured data and recommended additions</div>
   <div class="card" style="padding: 24px;">
-    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Your site has structured data blocks on all 6 pages. However, they are invalid for firestoppingbirmingham.co.uk because they reference the wrong domain (qsdfire.com) and include placeholder NAP coordinates. Once you fix these URLs, consider wrapping the homepage FAQ section in an FAQPage schema to acquire rich snippet displays on Google.</p>
+    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7;">Your site has structured data blocks on all 6 pages. However, they are invalid for firestoppingbirmingham.co.uk because they reference the wrong domain (the old corporate domain) and include placeholder NAP coordinates. Once you fix these URLs, consider wrapping the homepage FAQ section in an FAQPage schema to acquire rich snippet displays on Google.</p>
   </div>
 
   <!-- Performance Indicators -->
@@ -1274,7 +1274,7 @@
       <div class="action-number">1</div>
       <div class="action-content">
         <div class="action-title">Correct Canonical URL Tags</div>
-        <div class="action-desc">Update the canonical links in all 6 HTML files to reference https://firestoppingbirmingham.co.uk/ instead of qsdfire.com.</div>
+        <div class="action-desc">Update the canonical links in all 6 HTML files to reference https://firestoppingbirmingham.co.uk/ instead of the old corporate domain.</div>
         <div class="action-impact">Expected impact: Crucial. Google will immediately recognize the site as indexable.</div>
       </div>
       <span class="badge badge-critical">Critical</span>
@@ -1310,7 +1310,7 @@
       <div class="action-number">4</div>
       <div class="action-content">
         <div class="action-title">Fix LocalBusiness and Service Schema Blocks</div>
-        <div class="action-desc">Replace references to qsdfire.com in the JSON-LD schemas. Add your real phone number, real business email, and office location coordinates.</div>
+        <div class="action-desc">Replace references to the old corporate domain in the JSON-LD schemas. Add your real phone number, real business email, and office location coordinates.</div>
         <div class="action-impact">Expected impact: Corrects local business rich snippets and validates entity resolution on search maps.</div>
       </div>
       <span class="badge badge-critical">Critical</span>
